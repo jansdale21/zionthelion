@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+import { Autoplay, Pagination } from 'swiper/modules'
 import { FaCalendarAlt, FaWeight, FaBaby, FaHeart, FaRuler, FaClock, FaTimes } from 'react-icons/fa'
 import { useState, useRef } from 'react'
 import type { Swiper as SwiperType } from 'swiper'
@@ -134,7 +134,7 @@ const NewbornSection = () => {
               loop={true}
               loopAdditionalSlides={2}
               initialSlide={0}
-              spaceBetween={20}
+              spaceBetween={30}
               slidesPerView={1}
               breakpoints={{
                 640: {
