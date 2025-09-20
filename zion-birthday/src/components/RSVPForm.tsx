@@ -9,7 +9,6 @@ interface RSVPFormData {
   email?: string
   phone: string
   guestCount: number
-  attendance: 'yes' | 'maybe' | 'no'
   dietaryNotes: string
   message: string
 }
@@ -31,8 +30,11 @@ const RSVPForm = () => {
     setSubmissionError(null)
     
     try {
-      // Save to localStorage immediately (backup)
-      const rsvpData = rsvpService.saveRSVPLocal(data)
+      // Add attendance as 'yes' since everyone filling the form is attending
+      const rsvpData = rsvpService.saveRSVPLocal({
+        ...data,
+        attendance: 'yes' as const
+      })
       
       // Try to save to backend API
       const backendResult = await rsvpService.saveRSVPToBackend(rsvpData)
@@ -112,14 +114,6 @@ const RSVPForm = () => {
                 Submit Another RSVP
               </button>
               
-              {/* Admin: Export RSVPs button */}
-              <button
-                onClick={() => rsvpService.exportRSVPsAsCSV()}
-                className="btn-primary flex items-center justify-center"
-              >
-                <FaDownload className="w-4 h-4 mr-2" />
-                Export RSVPs (Admin)
-              </button>
             </div>
           </motion.div>
         </div>
@@ -229,44 +223,6 @@ const RSVPForm = () => {
               )}
             </div>
 
-            {/* Attendance */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-3">
-                Will you be attending? *
-              </label>
-              <div className="grid grid-cols-2 gap-4">
-                {[ 
-                  { value: 'yes', label: 'Yes!', icon: '🎉', color: 'green' },
-                  { value: 'no', label: 'No', icon: '😢', color: 'red' }
-                ].map((option) => (
-                  <label key={option.value} className="cursor-pointer">
-                    <input
-                      {...register('attendance', { required: 'Please select attendance' })}
-                      type="radio"
-                      value={option.value}
-                      className="sr-only peer"
-                    />
-                    <div className={`p-4 rounded-lg border-2 text-center transition-all duration-200 ${
-                      option.value === 'yes' 
-                        ? 'peer-checked:ring-2 peer-checked:ring-jungle-400 peer-checked:border-jungle-500 peer-checked:bg-jungle-50'
-                        : 'peer-checked:ring-2 peer-checked:ring-red-400 peer-checked:border-red-500 peer-checked:bg-red-50'
-                    } ${
-                      errors.attendance 
-                        ? 'border-red-300 bg-red-50' 
-                        : option.value === 'yes'
-                          ? 'border-jungle-200 hover:border-jungle-300 hover:bg-jungle-50'
-                          : 'border-red-200 hover:border-red-300 hover:bg-red-50'
-                    }`}>
-                      <div className="text-2xl mb-2">{option.icon}</div>
-                      <div className="font-semibold text-gray-700">{option.label}</div>
-                    </div>
-                  </label>
-                ))}
-              </div>
-              {errors.attendance && (
-                <p className="text-red-500 text-sm mt-1">{errors.attendance.message}</p>
-              )}
-            </div>
 
             {/* Message */}
             <div>

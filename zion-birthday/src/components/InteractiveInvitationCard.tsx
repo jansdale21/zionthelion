@@ -38,12 +38,12 @@ const InteractiveInvitationCard = ({ onAccept, onDecline }: InteractiveInvitatio
     onDecline()
   }
 
-  // Reset animation on component mount
+  // Show invitation letter immediately
   useEffect(() => {
-    setIsEnvelopeOpen(false)
-    setIsCardVisible(false)
+    setIsEnvelopeOpen(true)
+    setIsCardVisible(true)
     setIsAnimating(false)
-    setShowSparkles(false)
+    setShowSparkles(true)
   }, [])
 
   return (
