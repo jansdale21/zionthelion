@@ -21,7 +21,20 @@ class RSVPService {
   getAllRSVPs(): RSVPData[] {
     try {
       const stored = localStorage.getItem(this.STORAGE_KEY)
-      return stored ? JSON.parse(stored) : []
+      const rsvps = stored ? JSON.parse(stored) : []
+      
+      // Fix any existing RSVPs with string guestCount values
+      const fixedRsvps = rsvps.map((rsvp: any) => ({
+        ...rsvp,
+        guestCount: Number(rsvp.guestCount) || 0
+      }))
+      
+      // Save back if we fixed any data
+      if (JSON.stringify(rsvps) !== JSON.stringify(fixedRsvps)) {
+        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(fixedRsvps))
+      }
+      
+      return fixedRsvps
     } catch (error) {
       console.error('Error loading RSVPs:', error)
       return []
@@ -150,7 +163,7 @@ class RSVPService {
     const total = rsvps.length
     const attending = rsvps.filter(r => r.attendance === 'yes').length
     const notAttending = rsvps.filter(r => r.attendance === 'no').length
-    const totalGuests = rsvps.reduce((sum, r) => sum + r.guestCount, 0)
+    const totalGuests = rsvps.reduce((sum, r) => sum + Number(r.guestCount), 0)
 
     return {
       total,

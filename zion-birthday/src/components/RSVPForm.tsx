@@ -31,8 +31,10 @@ const RSVPForm = () => {
     
     try {
       // Add attendance as 'yes' since everyone filling the form is attending
+      // Convert guestCount to number to prevent string concatenation
       const rsvpData = rsvpService.saveRSVPLocal({
         ...data,
+        guestCount: Number(data.guestCount),
         attendance: 'yes' as const
       })
       
