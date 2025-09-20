@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 const FloatingElements = () => {
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div className="fixed inset-0 pointer-events-none overflow-hidden z-5">
       {/* Modern geometric shapes */}
       {[...Array(12)].map((_, i) => (
         <motion.div
@@ -89,7 +89,7 @@ const FloatingElements = () => {
       ))}
 
       {/* Floating safari animals - Optimized for performance */}
-      {['🦁','🦒','🦓','🐘','🦜','🦏','🐅','🐆'].map((emoji, i) => (
+      {['🎂','🦒','🦓','🐘','🦜','🦏','🐅','🐆'].map((emoji, i) => (
         <motion.div
           key={`animal-${i}`}
           className="absolute text-2xl sm:text-3xl lg:text-4xl opacity-25 drop-shadow-[0_2px_2px_rgba(0,0,0,0.25)] will-change-transform"

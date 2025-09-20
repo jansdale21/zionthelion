@@ -27,7 +27,7 @@ const Hero = () => {
   return (
     <section id="hero" className="relative h-screen overflow-hidden touch-pan-y">
       {/* Background Carousel */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-10">
         <Swiper
           modules={[Autoplay, EffectFade, Pagination]}
           effect="fade"
@@ -67,7 +67,7 @@ const Hero = () => {
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-10 h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 touch-none">
+      <div className="relative z-20 h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 touch-none">
         <div className="text-center text-white max-w-6xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -119,13 +119,6 @@ const Hero = () => {
               <span className="text-base sm:text-lg font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">
                 #ZionTheLion
               </span>
-              <motion.span 
-                className="text-2xl sm:text-3xl"
-                animate={{ rotate: [0, -10, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 1.2 }}
-              >
-                🦁
-              </motion.span>
             </motion.div>
             
             {/* Memory Note - Always Visible */}
@@ -207,7 +200,7 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
+        className="absolute bottom-4 left-1/2 transform -translate-x-1/2 z-30"
       >
         <motion.div
           animate={{ y: [0, 10, 0] }}

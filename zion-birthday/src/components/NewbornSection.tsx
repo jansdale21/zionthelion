@@ -152,7 +152,7 @@ const NewbornSection = () => {
                   spaceBetween: 30,
                 },
               }}
-              className="rounded-2xl overflow-hidden shadow-2xl"
+              className="rounded-2xl overflow-hidden shadow-2xl relative z-20"
             >
               {newbornImages.map((image, index) => (
                 <SwiperSlide key={index}>
@@ -200,7 +200,7 @@ const NewbornSection = () => {
           className="bg-white/95 backdrop-blur-md rounded-3xl p-8 shadow-2xl border border-jungle-100/60"
         >
           <h3 className="text-3xl font-bold text-jungle-800 mb-8 text-center">
-            Birth Details 🦁
+            Birth Details 👶
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {birthDetails.map((detail, index) => (

@@ -24,7 +24,7 @@ const InteractiveInvitationCard = ({ onAccept, onDecline }: InteractiveInvitatio
       setIsCardVisible(true)
       setShowSparkles(true)
       setIsAnimating(false)
-    }, 800)
+    }, 600)
   }
 
   const handleAccept = () => {
@@ -116,7 +116,7 @@ const InteractiveInvitationCard = ({ onAccept, onDecline }: InteractiveInvitatio
                 scale: isEnvelopeOpen ? 0 : 1,
                 rotate: isEnvelopeOpen ? 180 : 0
               }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
             >
               <span className="text-white text-lg font-bold">Z</span>
             </motion.div>
@@ -127,9 +127,10 @@ const InteractiveInvitationCard = ({ onAccept, onDecline }: InteractiveInvitatio
                 className="mb-6"
                 animate={{ 
                   opacity: isEnvelopeOpen ? 0 : 1,
-                  y: isEnvelopeOpen ? -20 : 0
+                  y: isEnvelopeOpen ? -30 : 0,
+                  scale: isEnvelopeOpen ? 0.95 : 1
                 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
               >
                 <FaEnvelope className="w-16 h-16 text-jungle-600 mx-auto mb-4" />
                 <h2 className="text-2xl font-bold text-jungle-800 mb-2">
@@ -145,9 +146,10 @@ const InteractiveInvitationCard = ({ onAccept, onDecline }: InteractiveInvitatio
                 className="flex items-center justify-center space-x-2 text-jungle-600"
                 animate={{ 
                   opacity: isEnvelopeOpen ? 0 : 1,
-                  y: isEnvelopeOpen ? -20 : 0
+                  y: isEnvelopeOpen ? -30 : 0,
+                  scale: isEnvelopeOpen ? 0.95 : 1
                 }}
-                transition={{ duration: 0.4 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
               >
                 <motion.div
                   animate={{ y: [0, -5, 0] }}
@@ -167,10 +169,10 @@ const InteractiveInvitationCard = ({ onAccept, onDecline }: InteractiveInvitatio
               <motion.div
                 className="relative bg-white rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl w-full"
                 initial={{ 
-                  y: 300, 
+                  y: 200, 
                   opacity: 0,
-                  scale: 0.8,
-                  rotateX: 90
+                  scale: 0.9,
+                  rotateX: 45
                 }}
                 animate={{ 
                   y: 0, 
@@ -179,15 +181,16 @@ const InteractiveInvitationCard = ({ onAccept, onDecline }: InteractiveInvitatio
                   rotateX: 0
                 }}
                 exit={{ 
-                  y: 300, 
+                  y: 200, 
                   opacity: 0,
-                  scale: 0.8
+                  scale: 0.9
                 }}
                 transition={{ 
-                  duration: 0.8, 
-                  ease: "easeOut",
+                  duration: 0.6, 
+                  ease: [0.25, 0.46, 0.45, 0.94],
                   type: "spring",
-                  stiffness: 100
+                  stiffness: 120,
+                  damping: 15
                 }}
                 style={{
                   background: 'linear-gradient(135deg, #ffffff 0%, #f0fdf4 30%, #dcfce7 70%, #bbf7d0 100%)',
@@ -298,7 +301,13 @@ const InteractiveInvitationCard = ({ onAccept, onDecline }: InteractiveInvitatio
                       }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
-                      <span className="text-2xl">🦁</span>
+                      <motion.span 
+                        className="text-2xl"
+                        animate={{ rotate: [0, 10, -10, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                      >
+                        🦁
+                      </motion.span>
                       <motion.p 
                         className="text-lg font-bold text-jungle-600"
                         animate={{ 
@@ -308,7 +317,13 @@ const InteractiveInvitationCard = ({ onAccept, onDecline }: InteractiveInvitatio
                       >
                         #ZionTheLion
                       </motion.p>
-                      <span className="text-2xl">🦁</span>
+                      <motion.span 
+                        className="text-2xl"
+                        animate={{ rotate: [0, -10, 10, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: 0.7 }}
+                      >
+                        🦁
+                      </motion.span>
                     </motion.div>
                   </div>
 
@@ -386,7 +401,7 @@ const InteractiveInvitationCard = ({ onAccept, onDecline }: InteractiveInvitatio
                       }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
-                      <motion.span
+                        <motion.span
                         animate={{ 
                           scale: [1, 1.1, 1],
                           rotate: [0, 5, -5, 0]
@@ -394,7 +409,7 @@ const InteractiveInvitationCard = ({ onAccept, onDecline }: InteractiveInvitatio
                         transition={{ duration: 1.5, repeat: Infinity }}
                         className="inline-block mr-3 text-xl"
                       >
-                        🦁
+                        🎉
                       </motion.span>
                       Accept Invitation
                       <motion.div

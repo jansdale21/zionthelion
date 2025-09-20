@@ -66,7 +66,7 @@ const JourneyCarousel = ({ title, description, images, nextButtonClass, prevButt
               spaceBetween: 30,
             },
           }}
-          className="rounded-2xl overflow-hidden shadow-2xl"
+          className="rounded-2xl overflow-hidden shadow-2xl relative z-20"
         >
           {images.map((image, index) => (
             <SwiperSlide key={index}>

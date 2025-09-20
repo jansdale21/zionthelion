@@ -189,25 +189,6 @@ const MusicPlayer = () => {
         </div>
       </motion.div>
 
-      {/* Initial Music Prompt */}
-      <AnimatePresence>
-        {!hasUserInteracted && (
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 50 }}
-            transition={{ delay: 3, duration: 0.6 }}
-            className="fixed bottom-4 left-1/2 transform -translate-x-1/2 z-[110]"
-          >
-            <div className="bg-jungle-500 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full shadow-lg mx-4">
-              <div className="flex items-center space-x-2">
-                <FaMusic className="w-4 h-4" />
-                <span className="text-xs sm:text-sm font-semibold">Tap to play safari music!</span>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Audio Element */}
       <audio

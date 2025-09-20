@@ -188,9 +188,9 @@ const Footer = () => {
               </a>
             </p>
             <div className="flex items-center justify-center space-x-2 text-white">
-              <span className="text-2xl">🦁</span>
+              <span className="text-2xl">🎉</span>
               <span className="text-lg font-semibold">#ZionTheLion</span>
-              <span className="text-2xl">🦁</span>
+              <span className="text-2xl">🎈</span>
             </div>
           </div>
         </motion.div>

@@ -57,7 +57,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               className="flex items-center space-x-2"
             >
-              <span className="text-2xl">🦁</span>
+              <span className="text-2xl">🎂</span>
               <span className={`font-bold text-lg ${isScrolled ? 'text-jungle-800' : 'text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]'}`}>#ZionTheLion</span>
             </motion.div>
 

@@ -86,7 +86,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-jungle-100 via-lion-50 to-forest-100 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-emerald-100 relative overflow-hidden">
       {/* Professional Safari Background Pattern */}
       <div className="fixed inset-0 opacity-10 pointer-events-none -z-10">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-jungle-200/30 via-lion-300/30 to-forest-400/30"></div>

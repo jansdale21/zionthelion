@@ -210,7 +210,7 @@ const RSVPForm = () => {
               </label>
               <div className="grid grid-cols-2 gap-4">
                 {[ 
-                  { value: 'yes', label: 'Yes!', icon: '🦁', color: 'green' },
+                  { value: 'yes', label: 'Yes!', icon: '🎉', color: 'green' },
                   { value: 'no', label: 'No', icon: '😢', color: 'red' }
                 ].map((option) => (
                   <label key={option.value} className="cursor-pointer">

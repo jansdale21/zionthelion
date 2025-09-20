@@ -68,15 +68,13 @@ const InteractiveMap = () => {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center mb-4">
-            <span className="text-5xl mr-4">🦁</span>
             <h2 className="text-4xl md:text-5xl font-bold text-jungle-800">
               Safari Location
             </h2>
-            <span className="text-5xl ml-4">🦁</span>
           </div>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Join us at our magical safari celebration venue! Click the map for directions 
-            and find all the details you need to get there. The pride awaits! 🦁
+            and find all the details you need to get there. The pride awaits!
           </p>
         </motion.div>
 
@@ -114,8 +112,7 @@ const InteractiveMap = () => {
             className="space-y-6"
           >
             <div className="card p-6">
-              <h3 className="text-2xl font-bold text-jungle-800 mb-4 flex items-center">
-                <span className="text-3xl mr-3">🦁</span>
+              <h3 className="text-2xl font-bold text-jungle-800 mb-4">
                 Venue Details
               </h3>
               
@@ -154,8 +151,7 @@ const InteractiveMap = () => {
             </div>
 
             <div className="card p-6">
-              <h3 className="text-xl font-bold text-jungle-800 mb-4 flex items-center">
-                <span className="text-2xl mr-3">🦁</span>
+              <h3 className="text-xl font-bold text-jungle-800 mb-4">
                 Getting There
               </h3>
               
@@ -188,7 +184,6 @@ const InteractiveMap = () => {
               onClick={openDirections}
               className="w-full btn-primary flex items-center justify-center space-x-2"
             >
-              <span className="text-xl">🦁</span>
               <span>Get Directions</span>
             </motion.button>
           </motion.div>
@@ -203,10 +198,8 @@ const InteractiveMap = () => {
           className="mt-16"
         >
           <div className="card p-8 bg-gradient-to-r from-jungle-100 to-forest-100">
-            <h3 className="text-2xl font-bold text-jungle-800 mb-6 text-center flex items-center justify-center">
-              <span className="text-3xl mr-3">🦁</span>
+            <h3 className="text-2xl font-bold text-jungle-800 mb-6 text-center">
               Important Information
-              <span className="text-3xl ml-3">🦁</span>
             </h3>
             
             <div className="grid md:grid-cols-2 gap-8">
@@ -261,7 +254,7 @@ const InteractiveMap = () => {
                 ease: "easeInOut",
               }}
             >
-              🦁
+              🎉
             </motion.div>
           ))}
         </div>
