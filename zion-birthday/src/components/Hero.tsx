@@ -5,22 +5,32 @@ import '../swiper.css'
 
 const Hero = () => {
 
-  // Hero images - replace with your actual images
+  // Hero images - using actual uploaded photos
   const heroImages = [
     {
-      src: '/assets/images/hero-1.jpg',
+      src: '/assets/carousels/header/LBP07629.jpg',
       alt: 'Zion the Lion King',
       fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      src: '/assets/images/hero-2.jpg',
+      src: '/assets/carousels/header/LBP07697.jpg',
       alt: 'Safari Birthday Celebration',
       fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
-      src: '/assets/images/hero-3.jpg',
+      src: '/assets/carousels/header/LBP07755.jpg',
       alt: 'Birthday Party Setup',
       fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
+    },
+    {
+      src: '/assets/carousels/header/LBP07788.jpg',
+      alt: 'Zion Adventures',
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/header/LBP07893.jpg',
+      alt: 'Zion Growing Up',
+      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     }
   ]
 

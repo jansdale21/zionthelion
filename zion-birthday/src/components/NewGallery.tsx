@@ -1,19 +1,22 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+import { useState } from 'react'
+import { FaTimes } from 'react-icons/fa'
 import '../swiper.css'
 
 const NewGallery = () => {
+  const [selectedImage, setSelectedImage] = useState<{src: string, alt: string, caption: string} | null>(null)
   // 12 Months Journey Images - using actual uploaded photos
   const journey12Months = [
     {
-      src: '/assets/carousels/12-months/1ST .heic',
+      src: '/assets/carousels/12-months/1ST.jpg',
       alt: '1st Month',
       caption: '1st Month',
       fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      src: '/assets/carousels/12-months/2ND.heic',
+      src: '/assets/carousels/12-months/2ND.jpg',
       alt: '2nd Month',
       caption: '2nd Month',
       fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
@@ -37,7 +40,7 @@ const NewGallery = () => {
       fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      src: '/assets/carousels/12-months/6TH.heic',
+      src: '/assets/carousels/12-months/6TH.jpg',
       alt: '6th Month',
       caption: '6th Month',
       fallback: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
@@ -380,7 +383,10 @@ const NewGallery = () => {
               {journey12Months.map((image, index) => (
                 <SwiperSlide key={index}>
                   <div className="relative group">
-                    <div className="aspect-square overflow-hidden rounded-xl">
+                    <div 
+                      className="aspect-square overflow-hidden rounded-xl cursor-pointer"
+                      onClick={() => setSelectedImage(image)}
+                    >
                       <img
                         src={image.src}
                         alt={image.alt}
@@ -468,7 +474,10 @@ const NewGallery = () => {
               {oneYearOld.map((image, index) => (
                 <SwiperSlide key={index}>
                   <div className="relative group">
-                    <div className="aspect-square overflow-hidden rounded-xl">
+                    <div 
+                      className="aspect-square overflow-hidden rounded-xl cursor-pointer"
+                      onClick={() => setSelectedImage(image)}
+                    >
                       <img
                         src={image.src}
                         alt={image.alt}
@@ -519,6 +528,48 @@ const NewGallery = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            onClick={() => setSelectedImage(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="relative max-w-4xl max-h-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+              >
+                <FaTimes className="w-8 h-8" />
+              </button>
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                className="max-w-full max-h-full object-contain rounded-lg"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
+                }}
+              />
+              {selectedImage.caption && (
+                <p className="text-white text-center mt-4 text-lg font-semibold">
+                  {selectedImage.caption}
+                </p>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

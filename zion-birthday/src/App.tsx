@@ -11,10 +11,26 @@ import Countdown from './components/Countdown'
 import Footer from './components/Footer'
 import FloatingElements from './components/FloatingElements'
 import MusicPlayer from './components/MusicPlayer'
+import AdminPage from './pages/Admin'
 
 function App() {
   const [invitationAccepted, setInvitationAccepted] = useState<boolean | null>(null)
   const [showConfetti, setShowConfetti] = useState(false)
+  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(window.location.pathname)
+    }
+    
+    window.addEventListener('popstate', handlePopState)
+    return () => window.removeEventListener('popstate', handlePopState)
+  }, [])
+
+  // Handle admin page routing
+  if (currentPath === '/admin') {
+    return <AdminPage />
+  }
 
   useEffect(() => {
     // Check if user has already accepted invitation (commented out to always show invitation)

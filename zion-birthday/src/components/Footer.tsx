@@ -195,13 +195,16 @@ const Footer = () => {
             
             {/* Admin link - visible but subtle */}
             <div className="mt-4 opacity-30 hover:opacity-100 transition-opacity duration-300">
-              <a 
-                href="/admin" 
+              <button 
+                onClick={() => {
+                  window.history.pushState({}, '', '/admin')
+                  window.dispatchEvent(new PopStateEvent('popstate'))
+                }}
                 className="text-white/50 text-xs hover:text-white/80 transition-colors"
                 title="Admin Dashboard"
               >
                 Admin
-              </a>
+              </button>
             </div>
           </div>
         </motion.div>

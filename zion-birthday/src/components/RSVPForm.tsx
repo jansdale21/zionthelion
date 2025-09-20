@@ -6,7 +6,7 @@ import { rsvpService } from '../services/rsvpService'
 
 interface RSVPFormData {
   name: string
-  email: string
+  email?: string
   phone: string
   guestCount: number
   attendance: 'yes' | 'maybe' | 'no'
@@ -177,11 +177,10 @@ const RSVPForm = () => {
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   <FaEnvelope className="inline w-4 h-4 mr-2" />
-                  Email *
+                  Email (Optional)
                 </label>
                 <input
                   {...register('email', { 
-                    required: 'Email is required',
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                       message: 'Invalid email address'
@@ -189,7 +188,7 @@ const RSVPForm = () => {
                   })}
                   type="email"
                   className="w-full px-4 py-3 border border-jungle-300 rounded-lg focus:ring-2 focus:ring-jungle-500 focus:border-transparent transition-all duration-200"
-                  placeholder="you@safari.com"
+                  placeholder="you@safari.com (optional)"
                 />
                 {errors.email && (
                   <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
