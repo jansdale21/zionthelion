@@ -1,8 +1,15 @@
-import { motion } from 'framer-motion'
-import { FaCalendarAlt, FaWeight, FaBaby, FaHeart, FaRuler, FaClock } from 'react-icons/fa'
-import StandardCarousel from './StandardCarousel'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, Pagination } from 'swiper/modules'
+import { FaCalendarAlt, FaWeight, FaBaby, FaHeart, FaRuler, FaClock, FaTimes } from 'react-icons/fa'
+import { useState, useRef } from 'react'
+import type { Swiper as SwiperType } from 'swiper'
+import '../swiper.css'
 
 const NewbornSection = () => {
+  const [selectedImage, setSelectedImage] = useState<{src: string, alt: string, caption: string} | null>(null)
+  const swiperRef = useRef<SwiperType | null>(null)
+
   // Newborn images - using actual uploaded photos
   const newbornImages = [
     {
@@ -12,34 +19,16 @@ const NewbornSection = () => {
       fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      src: '/assets/carousels/newborn/NEWBORN2.jpg',
-      alt: 'Zion newborn moments',
-      caption: 'Tiny fingers, tiny toes, infinite love',
+      src: '/assets/carousels/newborn/CHRISTENING 2.JPEG',
+      alt: 'Zion christening',
+      caption: 'Blessed and beautiful',
       fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
-      src: '/assets/carousels/newborn/NEWBORN3.jpg',
-      alt: 'Zion first days',
-      caption: 'First days of pure magic',
+      src: '/assets/carousels/newborn/CHRISTENING 2ND.JPEG',
+      alt: 'Zion christening second',
+      caption: 'Pure innocence and love',
       fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
-    },
-    {
-      src: '/assets/carousels/newborn/NEWBORN4.jpg',
-      alt: 'Zion sleeping peacefully',
-      caption: 'Sweet dreams, little lion',
-      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
-    },
-    {
-      src: '/assets/carousels/newborn/NEWBORN5.jpg',
-      alt: 'Zion with family',
-      caption: 'Surrounded by love from day one',
-      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
-    },
-    {
-      src: '/assets/carousels/newborn/NEWBORN6.jpg',
-      alt: 'Zion first smile',
-      caption: 'That first smile that melted our hearts',
-      fallback: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     }
   ]
 
@@ -91,15 +80,104 @@ const NewbornSection = () => {
           </p>
         </motion.div>
 
-        {/* Newborn Carousel */}
-        <StandardCarousel
-          images={newbornImages}
-          title="First Days of Magic"
-          description="From the moment Zion entered our world, he brought pure joy and wonder. These precious newborn moments capture the beginning of an incredible journey."
-          bulletColor="jungle-500"
-          buttonColor="jungle-600"
-          showModal={true}
-        />
+        {/* Newborn Slideshow */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="text-center mb-8">
+            <h3 className="text-3xl sm:text-4xl font-bold text-jungle-800 mb-4">
+              First Days of Magic
+            </h3>
+            <p className="text-lg text-forest-600 max-w-3xl mx-auto">
+              From the moment Zion entered our world, he brought pure joy and wonder. 
+              These precious newborn moments capture the beginning of an incredible journey.
+            </p>
+          </div>
+
+          <div className="relative">
+            <Swiper
+              modules={[Autoplay, Pagination]}
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper
+              }}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              pagination={{
+                clickable: true,
+                bulletClass: 'swiper-pagination-bullet bg-white/40 w-3 h-3 mx-1',
+                bulletActiveClass: 'swiper-pagination-bullet-active bg-jungle-500 scale-125',
+              }}
+              loop={true}
+              loopAdditionalSlides={2}
+              initialSlide={0}
+              spaceBetween={20}
+              slidesPerView={1}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+              }}
+              className="rounded-2xl overflow-hidden shadow-2xl relative z-20"
+            >
+              {newbornImages.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <div className="relative group">
+                    <div 
+                      className="aspect-square overflow-hidden rounded-xl cursor-pointer"
+                      onClick={() => setSelectedImage(image)}
+                    >
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = image.fallback;
+                        }}
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <p className="text-sm font-medium">{image.caption}</p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            {/* Navigation Buttons */}
+            <button 
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-jungle-600 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button 
+              onClick={() => swiperRef.current?.slideNext()}
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-jungle-600 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </motion.div>
 
         {/* Birth Details */}
         <motion.div
@@ -160,6 +238,48 @@ const NewbornSection = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+            onClick={() => setSelectedImage(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="relative max-w-4xl max-h-[90vh] w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute -top-12 right-0 z-10 bg-black/50 rounded-full p-2 text-white hover:bg-black/70 transition-colors"
+              >
+                <FaTimes className="w-6 h-6" />
+              </button>
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                className="w-full h-full object-contain rounded-lg"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = selectedImage.fallback;
+                }}
+              />
+              {selectedImage.caption && (
+                <p className="text-white text-center mt-4 text-lg font-medium">
+                  {selectedImage.caption}
+                </p>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
