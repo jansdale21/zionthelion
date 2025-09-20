@@ -35,8 +35,6 @@ const Navbar = () => {
   const navItems = [
     { id: 'hero', icon: FaHome, label: 'Home' },
     { id: 'newborn', icon: FaBaby, label: 'Newborn' },
-    { id: 'monthly-journey', icon: FaCalendarAlt, label: '12 Months' },
-    { id: 'one-year-old', icon: FaBirthdayCake, label: '1 Year Old' },
     { id: 'gallery', icon: FaImages, label: 'Gallery' },
     { id: 'map', icon: FaMapMarkerAlt, label: 'Location' },
     { id: 'rsvp', icon: FaEnvelope, label: 'RSVP' },

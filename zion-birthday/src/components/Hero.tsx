@@ -79,20 +79,25 @@ const Hero = () => {
               className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-4 leading-tight"
               animate={{ 
                 textShadow: [
-                  "0 0 30px rgba(245, 158, 11, 0.5)",
-                  "0 0 40px rgba(34, 197, 94, 0.5)",
-                  "0 0 30px rgba(245, 158, 11, 0.5)"
+                  "0 0 30px rgba(245, 158, 11, 0.8), 0 0 60px rgba(34, 197, 94, 0.6), 0 0 90px rgba(168, 85, 247, 0.4)",
+                  "0 0 40px rgba(34, 197, 94, 0.8), 0 0 80px rgba(168, 85, 247, 0.6), 0 0 120px rgba(245, 158, 11, 0.4)",
+                  "0 0 30px rgba(168, 85, 247, 0.8), 0 0 60px rgba(245, 158, 11, 0.6), 0 0 90px rgba(34, 197, 94, 0.4)"
                 ],
-                scale: [1, 1.02, 1]
+                scale: [1, 1.05, 1],
+                rotateY: [0, 5, -5, 0]
               }}
-              transition={{ duration: 3, repeat: Infinity }}
+              transition={{ duration: 4, repeat: Infinity }}
               style={{
-                background: 'linear-gradient(45deg, #f59e0b, #22c55e, #f59e0b)',
-                backgroundSize: '200% 200%',
+                background: 'linear-gradient(45deg, #f59e0b, #22c55e, #a855f7, #f59e0b, #22c55e)',
+                backgroundSize: '300% 300%',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 backgroundClip: 'text',
-                animation: 'gradientShift 3s ease-in-out infinite'
+                animation: 'gradientShift 4s ease-in-out infinite',
+                fontFamily: 'cursive, serif',
+                filter: 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.3))',
+                textStroke: '1px rgba(255, 255, 255, 0.2)',
+                WebkitTextStroke: '1px rgba(255, 255, 255, 0.2)'
               }}
             >
               ZION

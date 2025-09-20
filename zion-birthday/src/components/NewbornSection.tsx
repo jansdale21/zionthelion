@@ -10,7 +10,7 @@ const NewbornSection = () => {
     {
       src: '/assets/carousels/newborn/NEWBORN.jpg',
       alt: 'Zion as a newborn',
-      caption: 'Welcome to the world, little lion!',
+      caption: 'Welcome to the world, little Zion!',
       fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
@@ -22,7 +22,7 @@ const NewbornSection = () => {
     {
       src: '/assets/carousels/newborn/CHRISTENING 2ND.JPEG',
       alt: 'Zion\'s christening ceremony',
-      caption: 'A special day of celebration',
+      caption: 'You\'re finally here! 🌍',
       fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
     }
   ]

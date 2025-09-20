@@ -1,120 +1,302 @@
 import { motion } from 'framer-motion'
-import JourneyCarousel from './JourneyCarousel'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'
+import '../swiper.css'
 
 const NewGallery = () => {
-  // 12 Months Journey Images
+  // 12 Months Journey Images - using actual uploaded photos
   const journey12Months = [
     {
-      src: '/assets/carousels/12-months/month-1.jpg',
-      alt: 'Month 1 - Newborn',
-      caption: 'Month 1: First smiles and coos',
+      src: '/assets/carousels/12-months/1ST .heic',
+      alt: '1st Month',
+      caption: '1st Month',
       fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      src: '/assets/carousels/12-months/month-2.jpg',
-      alt: 'Month 2 - Growing strong',
-      caption: 'Month 2: Discovering the world',
+      src: '/assets/carousels/12-months/2ND.heic',
+      alt: '2nd Month',
+      caption: '2nd Month',
       fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
-      src: '/assets/carousels/12-months/month-3.jpg',
-      alt: 'Month 3 - First laughs',
-      caption: 'Month 3: First giggles and laughs',
+      src: '/assets/carousels/12-months/3RD.jpg',
+      alt: '3rd Month',
+      caption: '3rd Month',
       fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
     },
     {
-      src: '/assets/carousels/12-months/month-4.jpg',
-      alt: 'Month 4 - Rolling over',
-      caption: 'Month 4: First roll over!',
+      src: '/assets/carousels/12-months/4TH.jpg',
+      alt: '4th Month',
+      caption: '4th Month',
       fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      src: '/assets/carousels/12-months/month-5.jpg',
-      alt: 'Month 5 - Sitting up',
-      caption: 'Month 5: Sitting up like a big boy',
+      src: '/assets/carousels/12-months/5TH.JPG',
+      alt: '5th Month',
+      caption: '5th Month',
       fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      src: '/assets/carousels/12-months/month-6.jpg',
-      alt: 'Month 6 - First foods',
-      caption: 'Month 6: First solid foods',
+      src: '/assets/carousels/12-months/6TH.heic',
+      alt: '6th Month',
+      caption: '6th Month',
       fallback: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      src: '/assets/carousels/12-months/month-7.jpg',
-      alt: 'Month 7 - Crawling',
-      caption: 'Month 7: On the move!',
+      src: '/assets/carousels/12-months/7TH.jpg',
+      alt: '7th Month',
+      caption: '7th Month',
       fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      src: '/assets/carousels/12-months/month-8.jpg',
-      alt: 'Month 8 - Standing',
-      caption: 'Month 8: Pulling up to stand',
+      src: '/assets/carousels/12-months/8TH.jpg',
+      alt: '8th Month',
+      caption: '8th Month',
       fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
-      src: '/assets/carousels/12-months/month-9.jpg',
-      alt: 'Month 9 - First words',
-      caption: 'Month 9: First words - Mama!',
+      src: '/assets/carousels/12-months/9TH.JPG',
+      alt: '9th Month',
+      caption: '9th Month',
       fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
     },
     {
-      src: '/assets/carousels/12-months/month-10.jpg',
-      alt: 'Month 10 - Walking',
-      caption: 'Month 10: First steps!',
+      src: '/assets/carousels/12-months/10TH.jpg',
+      alt: '10th Month',
+      caption: '10th Month',
       fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
-    },
-    {
-      src: '/assets/carousels/12-months/month-11.jpg',
-      alt: 'Month 11 - Running',
-      caption: 'Month 11: Running around everywhere',
-      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
-    },
-    {
-      src: '/assets/carousels/12-months/month-12.jpg',
-      alt: 'Month 12 - Birthday boy',
-      caption: 'Month 12: Ready for the big day!',
-      fallback: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     }
   ]
 
-  // 1-Year-Old Photography Images
+  // 1-Year-Old Photography Images - using actual uploaded photos
   const oneYearOld = [
     {
-      src: '/assets/carousels/1yr-old/1yr-1.jpg',
-      alt: '1st Birthday Portrait',
-      caption: 'Official 1st birthday portrait',
+      src: '/assets/carousels/1yr-old/LBP07623.jpg',
+      alt: 'Zion at 1 year old',
+      caption: '',
       fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      src: '/assets/carousels/1yr-old/1yr-2.jpg',
-      alt: 'Safari Theme Photo',
-      caption: 'Safari theme photoshoot',
+      src: '/assets/carousels/1yr-old/LBP07627.jpg',
+      alt: 'Zion playing',
+      caption: '',
       fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
-      src: '/assets/carousels/1yr-old/1yr-3.jpg',
-      alt: 'Cake Smash',
-      caption: 'Cake smash session',
+      src: '/assets/carousels/1yr-old/LBP07629.jpg',
+      alt: 'Zion exploring',
+      caption: '',
       fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
     },
     {
-      src: '/assets/carousels/1yr-old/1yr-4.jpg',
-      alt: 'Family Portrait',
-      caption: 'Family portrait session',
+      src: '/assets/carousels/1yr-old/LBP07634.jpg',
+      alt: 'Zion smiling',
+      caption: '',
       fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      src: '/assets/carousels/1yr-old/1yr-5.jpg',
-      alt: 'Outdoor Adventure',
-      caption: 'Outdoor adventure photos',
+      src: '/assets/carousels/1yr-old/LBP07642.jpg',
+      alt: 'Zion with family',
+      caption: '',
       fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      src: '/assets/carousels/1yr-old/1yr-6.jpg',
-      alt: 'Candid Moments',
-      caption: 'Candid everyday moments',
-      fallback: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      src: '/assets/carousels/1yr-old/LBP07648.jpg',
+      alt: 'Zion learning',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07649.jpg',
+      alt: 'Zion playing with toys',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07650.jpg',
+      alt: 'Zion being cute',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07658.jpg',
+      alt: 'Zion outdoors',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07678.jpg',
+      alt: 'Zion laughing',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07690.jpg',
+      alt: 'Zion with expressions',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07697.jpg',
+      alt: 'Zion being playful',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07714.jpg',
+      alt: 'Zion moments',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07739.jpg',
+      alt: 'Zion growing up',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07740.jpg',
+      alt: 'Zion milestones',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07753.jpg',
+      alt: 'Zion adventures',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07755.jpg',
+      alt: 'Zion discoveries',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07756.jpg',
+      alt: 'Zion joy',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07770.jpg',
+      alt: 'Zion happiness',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07773.jpg',
+      alt: 'Zion wonder',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07788.jpg',
+      alt: 'Zion exploration',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07838.jpg',
+      alt: 'Zion growth',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07845.jpg',
+      alt: 'Zion development',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07858.jpg',
+      alt: 'Zion learning',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07866.jpg',
+      alt: 'Zion progress',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07870.jpg',
+      alt: 'Zion achievements',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07871.jpg',
+      alt: 'Zion moments',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07872.jpg',
+      alt: 'Zion memories',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07876.jpg',
+      alt: 'Zion joy',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07880.jpg',
+      alt: 'Zion happiness',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07890.jpg',
+      alt: 'Zion wonder',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07892.jpg',
+      alt: 'Zion exploration',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07893.jpg',
+      alt: 'Zion growth',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07894.jpg',
+      alt: 'Zion development',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07896.jpg',
+      alt: 'Zion learning',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07897.jpg',
+      alt: 'Zion progress',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07901.jpg',
+      alt: 'Zion achievements',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
+    },
+    {
+      src: '/assets/carousels/1yr-old/LBP07906.jpg',
+      alt: 'Zion milestones',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
     }
   ]
 
@@ -146,24 +328,175 @@ const NewGallery = () => {
         </motion.div>
 
         {/* 12 Months Journey Carousel */}
-        <JourneyCarousel
-          title="12 Months of Growth 🌱"
-          description="Watch our little lion grow month by month through his first year of life. Each month brought new discoveries, milestones, and endless joy."
-          folder="12-months"
-          images={journey12Months}
-          nextButtonClass="journey-next"
-          prevButtonClass="journey-prev"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="text-center mb-8">
+            <h3 className="text-3xl sm:text-4xl font-bold text-jungle-800 mb-4">
+              A Year of Growth & Wonder 🌱
+            </h3>
+            <p className="text-lg text-forest-600 max-w-3xl mx-auto">
+              Watch our little lion cub grow from a tiny newborn to a curious, 
+              adventurous one-year-old. Each month brought new milestones and magical moments.
+            </p>
+          </div>
+
+          <div className="relative">
+            <Swiper
+              modules={[Autoplay, Navigation, Pagination]}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              navigation={{
+                nextEl: '.journey-next',
+                prevEl: '.journey-prev',
+              }}
+              pagination={{
+                clickable: true,
+                bulletClass: 'swiper-pagination-bullet bg-white/40 w-3 h-3 mx-1',
+                bulletActiveClass: 'swiper-pagination-bullet-active bg-forest-500 scale-125',
+              }}
+              loop={true}
+              spaceBetween={30}
+              slidesPerView={1}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+              }}
+              className="rounded-2xl overflow-hidden shadow-2xl relative z-20"
+            >
+              {journey12Months.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <div className="relative group">
+                    <div className="aspect-square overflow-hidden rounded-xl">
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = image.fallback;
+                        }}
+                      />
+                    </div>
+                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                      <p className="text-white text-sm font-semibold text-center">
+                        {image.caption}
+                      </p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            {/* Navigation Buttons */}
+            <button className="journey-prev absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-forest-600 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button className="journey-next absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-forest-600 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </motion.div>
 
         {/* 1-Year-Old Photography Carousel */}
-        <JourneyCarousel
-          title="1-Year-Old Photography 📸"
-          description="Professional photoshoots capturing Zion's personality, milestones, and the pure joy of being one year old."
-          folder="1yr-old"
-          images={oneYearOld}
-          nextButtonClass="photography-next"
-          prevButtonClass="photography-prev"
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <div className="text-center mb-8">
+            <h3 className="text-3xl sm:text-4xl font-bold text-jungle-800 mb-4">
+              One Year of Pure Joy! 🎉
+            </h3>
+            <p className="text-lg text-forest-600 max-w-3xl mx-auto">
+              Our little lion has grown into such a happy, curious, and amazing one-year-old. 
+              Every day brings new adventures and endless smiles.
+            </p>
+          </div>
+
+          <div className="relative">
+            <Swiper
+              modules={[Autoplay, Navigation, Pagination]}
+              autoplay={{
+                delay: 3000,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              navigation={{
+                nextEl: '.photography-next',
+                prevEl: '.photography-prev',
+              }}
+              pagination={{
+                clickable: true,
+                bulletClass: 'swiper-pagination-bullet bg-white/40 w-3 h-3 mx-1',
+                bulletActiveClass: 'swiper-pagination-bullet-active bg-jungle-500 scale-125',
+              }}
+              loop={true}
+              spaceBetween={20}
+              slidesPerView={1}
+              breakpoints={{
+                640: {
+                  slidesPerView: 2,
+                  spaceBetween: 20,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 30,
+                },
+              }}
+              className="rounded-2xl overflow-hidden shadow-2xl relative z-20"
+            >
+              {oneYearOld.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <div className="relative group">
+                    <div className="aspect-square overflow-hidden rounded-xl">
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.src = image.fallback;
+                        }}
+                      />
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
+            {/* Navigation Buttons */}
+            <button className="photography-prev absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-jungle-600 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <button className="photography-next absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-jungle-600 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </motion.div>
 
         {/* Memory Note */}
         <motion.div
