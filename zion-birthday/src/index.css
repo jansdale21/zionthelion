@@ -3,17 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes gradientShift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
+/* Removed gradientShift animation for better mobile performance */
 
 @layer base {
   * {
@@ -210,5 +200,29 @@
   
   .text-responsive-base {
     @apply text-sm sm:text-base md:text-lg;
+  }
+}
+
+/* Mobile Performance Optimizations */
+@media (max-width: 640px) {
+  /* Reduce animations on mobile for better performance */
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.3s !important;
+  }
+  
+  /* Optimize images for mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

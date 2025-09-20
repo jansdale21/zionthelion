@@ -1,10 +1,12 @@
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
-import { FaCalendarAlt, FaWeight, FaBaby, FaHeart, FaRuler, FaClock } from 'react-icons/fa'
+import { FaCalendarAlt, FaWeight, FaBaby, FaHeart, FaRuler, FaClock, FaTimes } from 'react-icons/fa'
+import { useState } from 'react'
 import '../swiper.css'
 
 const NewbornSection = () => {
+  const [selectedImage, setSelectedImage] = useState<{src: string, alt: string, caption: string} | null>(null)
   // Newborn images - using actual uploaded photos
   const newbornImages = [
     {
@@ -145,11 +147,16 @@ const NewbornSection = () => {
               {newbornImages.map((image, index) => (
                 <SwiperSlide key={index}>
                   <div className="relative group">
-                    <div className="aspect-square overflow-hidden rounded-xl">
+                    <div 
+                      className="aspect-square overflow-hidden rounded-xl cursor-pointer"
+                      onClick={() => setSelectedImage(image)}
+                    >
                       <img
                         src={image.src}
                         alt={image.alt}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.src = image.fallback;
@@ -214,6 +221,48 @@ const NewbornSection = () => {
         </motion.div>
 
       </div>
+
+      {/* Image Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            onClick={() => setSelectedImage(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="relative max-w-3xl max-h-[80vh] w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10 bg-black/50 rounded-full p-2"
+              >
+                <FaTimes className="w-6 h-6" />
+              </button>
+              <img
+                src={selectedImage.src}
+                alt={selectedImage.alt}
+                className="w-full h-full max-h-[70vh] object-contain rounded-lg"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.src = 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
+                }}
+              />
+              {selectedImage.caption && (
+                <p className="text-white text-center mt-4 text-lg font-semibold">
+                  {selectedImage.caption}
+                </p>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }

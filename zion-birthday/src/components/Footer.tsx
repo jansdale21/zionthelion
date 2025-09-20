@@ -198,7 +198,7 @@ const Footer = () => {
               <button 
                 onClick={() => {
                   window.history.pushState({}, '', '/admin')
-                  window.dispatchEvent(new PopStateEvent('popstate'))
+                  window.location.reload()
                 }}
                 className="text-white/50 text-xs hover:text-white/80 transition-colors"
                 title="Admin Dashboard"

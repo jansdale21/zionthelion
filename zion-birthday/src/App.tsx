@@ -121,7 +121,7 @@ function App() {
           >
             <div className="confetti-container">
               {/* OPTIMIZED: Reduced confetti count for better performance */}
-              {[...Array(20)].map((_, i) => (
+              {[...Array(8)].map((_, i) => (
                 <motion.div
                   key={i}
                   className="absolute w-2 h-2 bg-yellow-400"

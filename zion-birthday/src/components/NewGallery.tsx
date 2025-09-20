@@ -390,7 +390,9 @@ const NewGallery = () => {
                       <img
                         src={image.src}
                         alt={image.alt}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.src = image.fallback;
@@ -443,7 +445,7 @@ const NewGallery = () => {
             <Swiper
               modules={[Autoplay, Navigation, Pagination]}
               autoplay={{
-                delay: 3000,
+                delay: 4000,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true,
               }}
@@ -481,7 +483,9 @@ const NewGallery = () => {
                       <img
                         src={image.src}
                         alt={image.alt}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                        decoding="async"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.src = image.fallback;
@@ -543,19 +547,19 @@ const NewGallery = () => {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="relative max-w-4xl max-h-full"
+              className="relative max-w-3xl max-h-[80vh] w-full"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10 bg-black/50 rounded-full p-2"
               >
-                <FaTimes className="w-8 h-8" />
+                <FaTimes className="w-6 h-6" />
               </button>
               <img
                 src={selectedImage.src}
                 alt={selectedImage.alt}
-                className="max-w-full max-h-full object-contain rounded-lg"
+                className="w-full h-full max-h-[70vh] object-contain rounded-lg"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.src = 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
