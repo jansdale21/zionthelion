@@ -62,11 +62,10 @@ const RSVPForm = () => {
 
   const guestCountOptions = [
     { value: 0, label: 'Just me' },
-    { value: 1, label: '1 guest' },
-    { value: 2, label: '2 guests' },
-    { value: 3, label: '3 guests' },
-    { value: 4, label: '4 guests' },
-    { value: 5, label: '5+ guests' }
+    { value: 1, label: '2 guests' },
+    { value: 2, label: '3 guests' },
+    { value: 3, label: '4 guests' },
+    { value: 4, label: '5+ guests' }
   ]
 
   if (isSubmitted) {
@@ -177,7 +176,7 @@ const RSVPForm = () => {
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
                   <FaEnvelope className="inline w-4 h-4 mr-2" />
-                  Email (Optional)
+                  Email
                 </label>
                 <input
                   {...register('email', { 
@@ -188,7 +187,7 @@ const RSVPForm = () => {
                   })}
                   type="email"
                   className="w-full px-4 py-3 border border-jungle-300 rounded-lg focus:ring-2 focus:ring-jungle-500 focus:border-transparent transition-all duration-200"
-                  placeholder="you@safari.com (optional)"
+                  placeholder="you@safari.com"
                 />
                 {errors.email && (
                   <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>

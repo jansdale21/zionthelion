@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { FaDownload, FaCheck, FaTimes, FaLock } from 'react-icons/fa'
+import { FaDownload, FaCheck, FaTimes, FaLock, FaTrash } from 'react-icons/fa'
 import { rsvpService } from '../services/rsvpService'
 import type { RSVPData } from '../services/rsvpService'
 
@@ -45,6 +45,13 @@ const AdminPage = () => {
 
   const handleExport = () => {
     rsvpService.exportRSVPsAsCSV()
+  }
+
+  const handleDeleteRSVP = (rsvpId: string) => {
+    if (window.confirm('Are you sure you want to delete this RSVP?')) {
+      rsvpService.deleteRSVP(rsvpId)
+      loadRSVPs() // Reload the list
+    }
   }
 
   if (!isAuthenticated) {
@@ -166,6 +173,13 @@ const AdminPage = () => {
                           Not Attending
                         </span>
                       )}
+                      <button
+                        onClick={() => handleDeleteRSVP(rsvp.id)}
+                        className="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs sm:text-sm hover:bg-red-200 transition-colors"
+                        title="Delete RSVP"
+                      >
+                        <FaTrash className="w-3 h-3" />
+                      </button>
                     </div>
                   </div>
                   <div className="text-sm text-gray-600">

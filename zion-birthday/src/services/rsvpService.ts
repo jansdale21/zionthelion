@@ -131,6 +131,19 @@ class RSVPService {
     window.URL.revokeObjectURL(url)
   }
 
+  // Delete RSVP by ID
+  deleteRSVP(rsvpId: string): boolean {
+    try {
+      const existingRSVPs = this.getAllRSVPs()
+      const updatedRSVPs = existingRSVPs.filter(rsvp => rsvp.id !== rsvpId)
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(updatedRSVPs))
+      return true
+    } catch (error) {
+      console.error('Error deleting RSVP:', error)
+      return false
+    }
+  }
+
   // Get RSVP statistics
   getRSVPStats() {
     const rsvps = this.getAllRSVPs()
