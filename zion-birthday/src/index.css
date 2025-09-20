@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-gradient-to-br from-jungle-50 via-lion-50 to-forest-100 text-forest-900;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    background-attachment: fixed;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    color: theme('colors.jungle.800');
+  }
+  
+  /* Magical Font Classes */
+  .font-magical {
+    font-family: 'Great Vibes', cursive;
+  }
+  
+  .font-elegant {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .font-script {
+    font-family: 'Dancing Script', cursive;
+  }
+  
+  /* Performance optimizations */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Hardware acceleration for animations */
+  .animate-float, .animate-pulse, .animate-bounce, [data-framer-motion] {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Optimize images */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* Mobile-first responsive design */
+  @media (max-width: 640px) {
+    body {
+      font-size: 14px;
+    }
+    
+    /* Reduce animations on mobile for better performance */
+    .animate-float {
+      animation-duration: 8s;
+    }
+    
+    /* Disable complex animations on mobile */
+    [data-framer-motion] {
+      will-change: auto;
+    }
+  }
+  
+  /* Performance optimizations for large screens */
+  @media (min-width: 1024px) {
+    /* Enable more complex animations on desktop */
+    .animate-float {
+      animation-duration: 4s;
+    }
+  }
+}
+
+@layer components {
+  /* Lion marker pulse for Leaflet divIcon */
+  .lion-marker .lion-pulse {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -4px;
+    width: 10px;
+    height: 10px;
+    background-color: theme('colors.safari.600');
+    border-radius: 9999px;
+    box-shadow: 0 0 0 0 theme('colors.safari.500');
+    animation: lionPulse 1.8s ease-out infinite;
+  }
+
+  @keyframes lionPulse {
+    0% { box-shadow: 0 0 0 0 theme('colors.safari.500'); opacity: 0.9; }
+    70% { box-shadow: 0 0 0 12px rgba(249, 115, 22, 0); opacity: 0.3; }
+    100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); opacity: 0.2; }
+  }
+  .btn-primary {
+    @apply bg-gradient-to-r from-jungle-500 to-forest-600 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm sm:text-base border border-jungle-600;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-forest-800 px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl border-2 border-jungle-200 hover:border-jungle-300 transform hover:scale-105 transition-all duration-300 text-sm sm:text-base;
+  }
+  
+  .card {
+    @apply bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-jungle-100/60;
+  }
+  
+  .floating {
+    @apply animate-float;
+  }
+  
+  .bounce-slow {
+    @apply animate-bounce-slow;
+  }
+  
+  /* Modern glass morphism effect */
+  .glass {
+    @apply bg-white/20 backdrop-blur-lg border border-white/30;
+  }
+  
+  /* Mobile-optimized spacing */
+  .mobile-padding {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Responsive text sizes */
+  .text-responsive-xl {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  .text-responsive-lg {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+  
+  .text-responsive-base {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+}
