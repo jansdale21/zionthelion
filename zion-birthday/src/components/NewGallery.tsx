@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay, Navigation, Pagination } from 'swiper/modules'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import type { Swiper as SwiperType } from 'swiper'
 import '../swiper.css'
@@ -10,6 +10,13 @@ const NewGallery = () => {
   const [selectedImage, setSelectedImage] = useState<{src: string, alt: string, caption: string} | null>(null)
   const journeySwiperRef = useRef<SwiperType | null>(null)
   const photographySwiperRef = useRef<SwiperType | null>(null)
+
+  // Ensure carousel starts at first slide on mobile
+  useEffect(() => {
+    if (journeySwiperRef.current) {
+      journeySwiperRef.current.slideTo(0, 0) // Go to slide 0 with no animation
+    }
+  }, [])
   // 12 Months Journey Images - using actual uploaded photos
   const journey12Months = [
     {
@@ -356,6 +363,8 @@ const NewGallery = () => {
               modules={[Autoplay, Navigation, Pagination]}
               onSwiper={(swiper) => {
                 journeySwiperRef.current = swiper
+                // Ensure it starts at slide 0 (1st month)
+                swiper.slideTo(0, 0)
               }}
               autoplay={{
                 delay: 4000,
@@ -372,7 +381,7 @@ const NewGallery = () => {
               initialSlide={0}
               spaceBetween={16}
               slidesPerView={1}
-              centeredSlides={true}
+              centeredSlides={false}
               touchRatio={1}
               touchAngle={45}
               resistanceRatio={0.85}
@@ -380,7 +389,7 @@ const NewGallery = () => {
                 480: {
                   slidesPerView: 1.2,
                   spaceBetween: 16,
-                  centeredSlides: true,
+                  centeredSlides: false,
                 },
                 640: {
                   slidesPerView: 2,
