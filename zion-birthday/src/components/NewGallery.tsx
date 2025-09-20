@@ -10,7 +10,6 @@ const NewGallery = () => {
   const [selectedImage, setSelectedImage] = useState<{src: string, alt: string, caption: string} | null>(null)
   const journeySwiperRef = useRef<SwiperType | null>(null)
   const photographySwiperRef = useRef<SwiperType | null>(null)
-
   // 12 Months Journey Images - using actual uploaded photos
   const journey12Months = [
     {
@@ -53,263 +52,270 @@ const NewGallery = () => {
       src: '/assets/carousels/12-months/7TH.jpg',
       alt: '7th Month',
       caption: '7th Month',
-      fallback: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/12-months/8TH.jpg',
       alt: '8th Month',
       caption: '8th Month',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
       src: '/assets/carousels/12-months/9TH.JPG',
       alt: '9th Month',
       caption: '9th Month',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
     },
     {
       src: '/assets/carousels/12-months/10TH.jpg',
       alt: '10th Month',
       caption: '10th Month',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     }
   ]
 
-  // One Year Old Photography Images - using actual uploaded photos
+  // 1-Year-Old Photography Images - using actual uploaded photos
   const oneYearOld = [
     {
       src: '/assets/carousels/1yr-old/LBP07623.jpg',
       alt: 'Zion at 1 year old',
-      caption: 'Pure Joy',
+      caption: '',
       fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07627.jpg',
-      alt: 'Zion adventures',
-      caption: 'Adventure Time',
+      alt: 'Zion playing',
+      caption: '',
       fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07629.jpg',
-      alt: 'Zion growing up',
-      caption: 'Growing Strong',
+      alt: 'Zion exploring',
+      caption: '',
       fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07634.jpg',
-      alt: 'Zion milestones',
-      caption: 'Milestone Moments',
+      alt: 'Zion smiling',
+      caption: '',
       fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07642.jpg',
-      alt: 'Zion birthday prep',
-      caption: 'Birthday Prep',
+      alt: 'Zion with family',
+      caption: '',
       fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07648.jpg',
-      alt: 'Zion family time',
-      caption: 'Family Time',
-      fallback: 'https://images.unsplash.com/photo-1594736797933-d0401ba2fe65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion learning',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07649.jpg',
-      alt: 'Zion playtime',
-      caption: 'Playtime Fun',
-      fallback: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion playing with toys',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07650.jpg',
-      alt: 'Zion learning',
-      caption: 'Learning & Growing',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion being cute',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07658.jpg',
-      alt: 'Zion smiles',
-      caption: 'Sweet Smiles',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion outdoors',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07678.jpg',
-      alt: 'Zion first steps',
-      caption: 'First Steps',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion laughing',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07690.jpg',
-      alt: 'Zion exploring',
-      caption: 'Exploring the World',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion with expressions',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07697.jpg',
-      alt: 'Zion birthday celebration',
-      caption: 'Birthday Celebration',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion being playful',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07714.jpg',
-      alt: 'Zion with toys',
-      caption: 'Toy Time',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion moments',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07739.jpg',
-      alt: 'Zion sleeping',
-      caption: 'Sweet Dreams',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion growing up',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07740.jpg',
-      alt: 'Zion laughing',
-      caption: 'Pure Laughter',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion milestones',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07753.jpg',
-      alt: 'Zion playing',
-      caption: 'Playful Moments',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion adventures',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07755.jpg',
-      alt: 'Zion milestones',
-      caption: 'Growing Up',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion discoveries',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07756.jpg',
-      alt: 'Zion family',
-      caption: 'Family Love',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion joy',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07770.jpg',
-      alt: 'Zion adventures',
-      caption: 'Little Explorer',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion happiness',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07773.jpg',
-      alt: 'Zion happy',
-      caption: 'Happy Moments',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion wonder',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07788.jpg',
-      alt: 'Zion birthday',
-      caption: 'Birthday Boy',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion exploration',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07838.jpg',
-      alt: 'Zion playing',
-      caption: 'Play Time',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion growth',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07845.jpg',
-      alt: 'Zion smiling',
-      caption: 'Sweet Smiles',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion development',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07858.jpg',
       alt: 'Zion learning',
-      caption: 'Learning New Things',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07866.jpg',
-      alt: 'Zion growing',
-      caption: 'Growing Strong',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion progress',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07870.jpg',
-      alt: 'Zion adventures',
-      caption: 'Adventure Time',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion achievements',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07871.jpg',
-      alt: 'Zion happy',
-      caption: 'Pure Joy',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion moments',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07872.jpg',
-      alt: 'Zion family',
-      caption: 'Family Moments',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion memories',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07876.jpg',
-      alt: 'Zion playing',
-      caption: 'Playful Fun',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion joy',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07880.jpg',
-      alt: 'Zion smiling',
-      caption: 'Happy Smiles',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion happiness',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07890.jpg',
-      alt: 'Zion learning',
-      caption: 'Learning & Growing',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion wonder',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07892.jpg',
-      alt: 'Zion adventures',
-      caption: 'Little Explorer',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion exploration',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07893.jpg',
-      alt: 'Zion birthday',
-      caption: 'Birthday Celebration',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion growth',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07894.jpg',
-      alt: 'Zion happy',
-      caption: 'Pure Happiness',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion development',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07896.jpg',
-      alt: 'Zion family',
-      caption: 'Family Love',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion learning',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07897.jpg',
-      alt: 'Zion playing',
-      caption: 'Play Time Fun',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion progress',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07901.jpg',
-      alt: 'Zion smiling',
-      caption: 'Sweet Smiles',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion achievements',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
       src: '/assets/carousels/1yr-old/LBP07906.jpg',
-      alt: 'Zion adventures',
-      caption: 'Adventure Time',
-      fallback: 'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+      alt: 'Zion milestones',
+      caption: '',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
     }
   ]
 
   return (
-    <section id="gallery" className="py-16 sm:py-20 lg:py-24 bg-gradient-to-b from-forest-50 to-jungle-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="gallery" className="py-20 bg-gradient-to-b from-forest-50 via-jungle-50 to-forest-100 relative overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-jungle-200/20 via-forest-300/20 to-jungle-400/20"></div>
+        <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-jungle-300/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-forest-400/10 rounded-full blur-3xl"></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -318,12 +324,12 @@ const NewGallery = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-jungle-800 mb-6">
-            Memory Lane
+          <h2 className="text-4xl sm:text-5xl font-bold text-jungle-800 mb-6">
+            Zion's Journey
           </h2>
-          <p className="text-lg sm:text-xl text-forest-600 max-w-3xl mx-auto leading-relaxed">
-            Take a journey through Zion's first year of life, filled with precious moments, 
-            milestones, and endless joy. Each photo tells a story of growth, love, and wonder.
+          <p className="text-xl text-forest-600 max-w-3xl mx-auto leading-relaxed">
+            From our little cub's first moments to becoming the king of our hearts. 
+            Here's a glimpse into Zion's amazing first year!
           </p>
         </motion.div>
 
@@ -364,7 +370,7 @@ const NewGallery = () => {
               loop={true}
               loopAdditionalSlides={2}
               initialSlide={0}
-              spaceBetween={20}
+              spaceBetween={30}
               slidesPerView={1}
               breakpoints={{
                 640: {
@@ -437,11 +443,11 @@ const NewGallery = () => {
         >
           <div className="text-center mb-8">
             <h3 className="text-3xl sm:text-4xl font-bold text-jungle-800 mb-4">
-              One Year of Pure Joy! 📸
+              One Year of Pure Joy! 🎉
             </h3>
             <p className="text-lg text-forest-600 max-w-3xl mx-auto">
-              Celebrating Zion's incredible first year with these precious moments captured in time. 
-              Every smile, every laugh, every milestone - pure magic!
+              Our little lion has grown into such a happy, curious, and amazing one-year-old. 
+              Every day brings new adventures and endless smiles.
             </p>
           </div>
 
@@ -497,10 +503,6 @@ const NewGallery = () => {
                         }}
                       />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <p className="text-sm font-medium">{image.caption}</p>
-                    </div>
                   </div>
                 </SwiperSlide>
               ))}
@@ -535,9 +537,14 @@ const NewGallery = () => {
           className="text-center mt-16"
         >
           <div className="bg-gradient-to-r from-jungle-100 to-forest-100 rounded-2xl p-8 inline-block">
-            <p className="text-lg text-jungle-800 font-medium">
-              📸 Share your favorite Zion moments with us using{' '}
-              <span className="font-bold text-jungle-900">#ZionTheLion</span>
+            <h3 className="text-2xl font-bold text-jungle-800 mb-4">
+              Share Your Memories 📸
+            </h3>
+            <p className="text-lg text-forest-700 mb-4">
+              We'd love to see your photos from Zion's birthday celebration!
+            </p>
+            <p className="text-xl font-bold text-jungle-800">
+              Use <span className="text-2xl">#ZionTheLion</span> to share your memories with us
             </p>
           </div>
         </motion.div>
@@ -550,33 +557,33 @@ const NewGallery = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
             onClick={() => setSelectedImage(null)}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="relative max-w-4xl max-h-[90vh] w-full"
+              className="relative max-w-3xl max-h-[80vh] w-full"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute -top-12 right-0 z-10 bg-black/50 rounded-full p-2 text-white hover:bg-black/70 transition-colors"
+                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10 bg-black/50 rounded-full p-2"
               >
                 <FaTimes className="w-6 h-6" />
               </button>
               <img
                 src={selectedImage.src}
                 alt={selectedImage.alt}
-                className="w-full h-full object-contain rounded-lg"
+                className="w-full h-full max-h-[70vh] object-contain rounded-lg"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
-                  target.src = selectedImage.fallback;
+                  target.src = 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
                 }}
               />
               {selectedImage.caption && (
-                <p className="text-white text-center mt-4 text-lg font-medium">
+                <p className="text-white text-center mt-4 text-lg font-semibold">
                   {selectedImage.caption}
                 </p>
               )}

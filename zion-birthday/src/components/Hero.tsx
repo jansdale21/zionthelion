@@ -5,32 +5,22 @@ import '../swiper.css'
 
 const Hero = () => {
 
-  // Hero images - using actual uploaded photos
+  // Hero images - replace with your actual images
   const heroImages = [
     {
-      src: '/assets/carousels/header/LBP07629.jpg',
+      src: '/assets/images/hero-1.jpg',
       alt: 'Zion the Lion King',
       fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      src: '/assets/carousels/header/LBP07697.jpg',
+      src: '/assets/images/hero-2.jpg',
       alt: 'Safari Birthday Celebration',
       fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
-      src: '/assets/carousels/header/LBP07755.jpg',
+      src: '/assets/images/hero-3.jpg',
       alt: 'Birthday Party Setup',
       fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
-    },
-    {
-      src: '/assets/carousels/header/LBP07788.jpg',
-      alt: 'Zion Adventures',
-      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
-    },
-    {
-      src: '/assets/carousels/header/LBP07893.jpg',
-      alt: 'Zion Growing Up',
-      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     }
   ]
 
@@ -62,13 +52,11 @@ const Hero = () => {
                 <img
                   src={image.src}
                   alt={image.alt}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = image.fallback;
-                        }}
+                  className="w-full h-full object-cover"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = image.fallback;
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-earth-900/40 via-earth-900/20 to-earth-900/50" />
                 {/* Animated overlay */}
@@ -87,23 +75,19 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-        <motion.h1 
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-magical mb-4 leading-tight"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          style={{
-            background: 'linear-gradient(45deg, #f59e0b, #22c55e, #a855f7)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-            filter: 'drop-shadow(0 0 10px rgba(255, 255, 255, 0.2))',
-            textStroke: '1px rgba(255, 255, 255, 0.1)',
-            WebkitTextStroke: '1px rgba(255, 255, 255, 0.1)'
-          }}
-        >
-          ZION
-        </motion.h1>
+            <motion.h1 
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 leading-tight"
+              animate={{ 
+                textShadow: [
+                  "0 0 20px rgba(245, 158, 11, 0.3)",
+                  "0 0 30px rgba(34, 197, 94, 0.3)",
+                  "0 0 20px rgba(245, 158, 11, 0.3)"
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              Zion
+            </motion.h1>
             <motion.h2 
               className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-6 text-lion-100 drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]"
               initial={{ opacity: 0, x: -50 }}
