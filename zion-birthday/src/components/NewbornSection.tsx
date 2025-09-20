@@ -130,6 +130,9 @@ const NewbornSection = () => {
                 bulletClass: 'swiper-pagination-bullet bg-white/40 w-3 h-3 mx-1',
                 bulletActiveClass: 'swiper-pagination-bullet-active bg-jungle-500 scale-125',
               }}
+              loop={true}
+              loopAdditionalSlides={1}
+              initialSlide={0}
               spaceBetween={30}
               slidesPerView={1}
               breakpoints={{

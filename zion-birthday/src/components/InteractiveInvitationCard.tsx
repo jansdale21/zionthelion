@@ -8,10 +8,10 @@ interface InteractiveInvitationCardProps {
 }
 
 const InteractiveInvitationCard = ({ onAccept, onDecline }: InteractiveInvitationCardProps) => {
-  const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(false)
-  const [isCardVisible, setIsCardVisible] = useState(false)
+  const [isEnvelopeOpen, setIsEnvelopeOpen] = useState(true)
+  const [isCardVisible, setIsCardVisible] = useState(true)
   const [isAnimating, setIsAnimating] = useState(false)
-  const [showSparkles, setShowSparkles] = useState(false)
+  const [showSparkles, setShowSparkles] = useState(true)
 
   const handleEnvelopeClick = () => {
     if (isAnimating) return

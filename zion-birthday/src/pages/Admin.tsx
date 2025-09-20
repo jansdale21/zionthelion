@@ -89,77 +89,79 @@ const AdminPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-emerald-100">
       {/* Header */}
-      <div className="bg-jungle-600 text-white p-6">
-        <div className="max-w-6xl mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-bold">RSVP Admin Dashboard</h1>
-          <div className="flex gap-4">
-            <button
-              onClick={handleExport}
-              className="bg-white/20 text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-colors flex items-center"
-            >
-              <FaDownload className="w-4 h-4 mr-2" />
-              Export CSV
-            </button>
-            <button
-              onClick={handleLogout}
-              className="bg-white/20 text-white px-4 py-2 rounded-lg hover:bg-white/30 transition-colors"
-            >
-              Logout
-            </button>
+      <div className="bg-jungle-600 text-white p-4 sm:p-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold">RSVP Admin Dashboard</h1>
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto">
+              <button
+                onClick={handleExport}
+                className="bg-white/20 text-white px-3 py-2 rounded-lg hover:bg-white/30 transition-colors flex items-center justify-center text-sm sm:text-base"
+              >
+                <FaDownload className="w-4 h-4 mr-2" />
+                Export CSV
+              </button>
+              <button
+                onClick={handleLogout}
+                className="bg-white/20 text-white px-3 py-2 rounded-lg hover:bg-white/30 transition-colors text-sm sm:text-base"
+              >
+                Logout
+              </button>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto p-6">
+      <div className="max-w-6xl mx-auto p-4 sm:p-6">
         {/* Stats */}
         {stats && (
-          <div className="bg-white rounded-2xl shadow-lg p-6 mb-6">
-            <h2 className="text-xl font-bold text-gray-800 mb-4">Statistics</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-jungle-600">{stats.total}</div>
-                <div className="text-sm text-gray-600">Total RSVPs</div>
+          <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 mb-6">
+            <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">Statistics</h2>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+              <div className="text-center p-2 sm:p-3 bg-gray-50 rounded-lg">
+                <div className="text-2xl sm:text-3xl font-bold text-jungle-600">{stats.total}</div>
+                <div className="text-xs sm:text-sm text-gray-600">Total RSVPs</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-green-600">{stats.attending}</div>
-                <div className="text-sm text-gray-600">Attending</div>
+              <div className="text-center p-2 sm:p-3 bg-gray-50 rounded-lg">
+                <div className="text-2xl sm:text-3xl font-bold text-green-600">{stats.attending}</div>
+                <div className="text-xs sm:text-sm text-gray-600">Attending</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-red-600">{stats.notAttending}</div>
-                <div className="text-sm text-gray-600">Not Attending</div>
+              <div className="text-center p-2 sm:p-3 bg-gray-50 rounded-lg">
+                <div className="text-2xl sm:text-3xl font-bold text-red-600">{stats.notAttending}</div>
+                <div className="text-xs sm:text-sm text-gray-600">Not Attending</div>
               </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600">{stats.totalGuests}</div>
-                <div className="text-sm text-gray-600">Total Guests</div>
+              <div className="text-center p-2 sm:p-3 bg-gray-50 rounded-lg">
+                <div className="text-2xl sm:text-3xl font-bold text-blue-600">{stats.totalGuests}</div>
+                <div className="text-xs sm:text-sm text-gray-600">Total Guests</div>
               </div>
             </div>
           </div>
         )}
 
         {/* RSVP List */}
-        <div className="bg-white rounded-2xl shadow-lg p-6">
-          <h2 className="text-xl font-bold text-gray-800 mb-4">All RSVPs</h2>
+        <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">All RSVPs</h2>
           {rsvps.length === 0 ? (
             <div className="text-center text-gray-500 py-8">
               No RSVPs yet
             </div>
           ) : (
-            <div className="space-y-4 max-h-96 overflow-y-auto">
+            <div className="space-y-3 sm:space-y-4 max-h-96 overflow-y-auto">
               {rsvps.map((rsvp) => (
-                <div key={rsvp.id} className="border rounded-lg p-4">
-                  <div className="flex justify-between items-start mb-2">
-                    <div>
-                      <h3 className="font-semibold text-lg">{rsvp.name}</h3>
-                      <p className="text-gray-600">{rsvp.email}</p>
+                <div key={rsvp.id} className="border rounded-lg p-3 sm:p-4">
+                  <div className="flex flex-col sm:flex-row justify-between items-start mb-2 gap-2">
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-base sm:text-lg">{rsvp.name}</h3>
+                      <p className="text-gray-600 text-sm sm:text-base">{rsvp.email}</p>
                     </div>
                     <div className="flex items-center gap-2">
                       {rsvp.attendance === 'yes' ? (
-                        <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm flex items-center">
+                        <span className="bg-green-100 text-green-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm flex items-center">
                           <FaCheck className="w-3 h-3 mr-1" />
                           Attending
                         </span>
                       ) : (
-                        <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm flex items-center">
+                        <span className="bg-red-100 text-red-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm flex items-center">
                           <FaTimes className="w-3 h-3 mr-1" />
                           Not Attending
                         </span>
