@@ -122,7 +122,7 @@ const NewbornSection = () => {
                 swiperRef.current = swiper
               }}
               autoplay={{
-                delay: 3000,
+                delay: 4000,
                 disableOnInteraction: false,
                 pauseOnMouseEnter: true,
               }}
@@ -132,9 +132,9 @@ const NewbornSection = () => {
                 bulletActiveClass: 'swiper-pagination-bullet-active bg-jungle-500 scale-125',
               }}
               loop={true}
-              loopAdditionalSlides={1}
+              loopAdditionalSlides={2}
               initialSlide={0}
-              spaceBetween={30}
+              spaceBetween={20}
               slidesPerView={1}
               breakpoints={{
                 640: {

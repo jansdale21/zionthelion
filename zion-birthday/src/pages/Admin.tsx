@@ -124,7 +124,7 @@ const AdminPage = () => {
         {stats && (
           <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 mb-6">
             <h2 className="text-lg sm:text-xl font-bold text-gray-800 mb-4">Statistics</h2>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4">
               <div className="text-center p-2 sm:p-3 bg-gray-50 rounded-lg">
                 <div className="text-2xl sm:text-3xl font-bold text-jungle-600">{stats.total}</div>
                 <div className="text-xs sm:text-sm text-gray-600">Total RSVPs</div>
@@ -132,10 +132,6 @@ const AdminPage = () => {
               <div className="text-center p-2 sm:p-3 bg-gray-50 rounded-lg">
                 <div className="text-2xl sm:text-3xl font-bold text-green-600">{stats.attending}</div>
                 <div className="text-xs sm:text-sm text-gray-600">Attending</div>
-              </div>
-              <div className="text-center p-2 sm:p-3 bg-gray-50 rounded-lg">
-                <div className="text-2xl sm:text-3xl font-bold text-red-600">{stats.notAttending}</div>
-                <div className="text-xs sm:text-sm text-gray-600">Not Attending</div>
               </div>
               <div className="text-center p-2 sm:p-3 bg-gray-50 rounded-lg">
                 <div className="text-2xl sm:text-3xl font-bold text-blue-600">{stats.totalGuests}</div>
@@ -162,17 +158,10 @@ const AdminPage = () => {
                       <p className="text-gray-600 text-sm sm:text-base">{rsvp.email}</p>
                     </div>
                     <div className="flex items-center gap-2">
-                      {rsvp.attendance === 'yes' ? (
-                        <span className="bg-green-100 text-green-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm flex items-center">
-                          <FaCheck className="w-3 h-3 mr-1" />
-                          Attending
-                        </span>
-                      ) : (
-                        <span className="bg-red-100 text-red-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm flex items-center">
-                          <FaTimes className="w-3 h-3 mr-1" />
-                          Not Attending
-                        </span>
-                      )}
+                      <span className="bg-green-100 text-green-800 px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm flex items-center">
+                        <FaCheck className="w-3 h-3 mr-1" />
+                        Attending
+                      </span>
                       <button
                         onClick={() => handleDeleteRSVP(rsvp.id)}
                         className="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs sm:text-sm hover:bg-red-200 transition-colors"
