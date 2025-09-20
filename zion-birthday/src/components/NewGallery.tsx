@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, Pagination } from 'swiper/modules'
+import { Autoplay, Navigation, Pagination } from 'swiper/modules'
 import { useState, useRef } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import type { Swiper as SwiperType } from 'swiper'
@@ -353,7 +353,7 @@ const NewGallery = () => {
 
           <div className="relative">
             <Swiper
-              modules={[Autoplay, Pagination]}
+              modules={[Autoplay, Navigation, Pagination]}
               onSwiper={(swiper) => {
                 journeySwiperRef.current = swiper
               }}
@@ -433,8 +433,17 @@ const NewGallery = () => {
 
             {/* Navigation Buttons */}
             <button 
-              onClick={() => journeySwiperRef.current?.slidePrev()}
-              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-forest-600 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer touch-manipulation"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                journeySwiperRef.current?.slidePrev();
+              }}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                journeySwiperRef.current?.slidePrev();
+              }}
+              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-forest-600 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Previous image"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -442,8 +451,17 @@ const NewGallery = () => {
               </svg>
             </button>
             <button 
-              onClick={() => journeySwiperRef.current?.slideNext()}
-              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-forest-600 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer touch-manipulation"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                journeySwiperRef.current?.slideNext();
+              }}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                journeySwiperRef.current?.slideNext();
+              }}
+              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-forest-600 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Next image"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -473,7 +491,7 @@ const NewGallery = () => {
 
           <div className="relative">
             <Swiper
-              modules={[Autoplay, Pagination]}
+              modules={[Autoplay, Navigation, Pagination]}
               onSwiper={(swiper) => {
                 photographySwiperRef.current = swiper
               }}
@@ -548,8 +566,17 @@ const NewGallery = () => {
 
             {/* Navigation Buttons */}
             <button 
-              onClick={() => photographySwiperRef.current?.slidePrev()}
-              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-jungle-600 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer touch-manipulation"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                photographySwiperRef.current?.slidePrev();
+              }}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                photographySwiperRef.current?.slidePrev();
+              }}
+              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-jungle-600 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Previous image"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -557,8 +584,17 @@ const NewGallery = () => {
               </svg>
             </button>
             <button 
-              onClick={() => photographySwiperRef.current?.slideNext()}
-              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-jungle-600 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer touch-manipulation"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                photographySwiperRef.current?.slideNext();
+              }}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                photographySwiperRef.current?.slideNext();
+              }}
+              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-jungle-600 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Next image"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

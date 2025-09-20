@@ -117,7 +117,7 @@ const NewbornSection = () => {
         >
           <div className="relative">
             <Swiper
-              modules={[Autoplay, Pagination]}
+              modules={[Autoplay, Navigation, Pagination]}
               onSwiper={(swiper) => {
                 swiperRef.current = swiper
               }}
@@ -196,8 +196,17 @@ const NewbornSection = () => {
 
             {/* Navigation Buttons */}
             <button 
-              onClick={() => swiperRef.current?.slidePrev()}
-              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-jungle-600 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer touch-manipulation"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                swiperRef.current?.slidePrev();
+              }}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                swiperRef.current?.slidePrev();
+              }}
+              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-jungle-600 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Previous image"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -205,8 +214,17 @@ const NewbornSection = () => {
               </svg>
             </button>
             <button 
-              onClick={() => swiperRef.current?.slideNext()}
-              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-jungle-600 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer touch-manipulation"
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                swiperRef.current?.slideNext();
+              }}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                swiperRef.current?.slideNext();
+              }}
+              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-jungle-600 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
               aria-label="Next image"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
