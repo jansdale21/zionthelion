@@ -9,12 +9,43 @@ import '../swiper.css'
 const NewbornSection = () => {
   const [selectedImage, setSelectedImage] = useState<{src: string, alt: string, caption: string} | null>(null)
   const swiperRef = useRef<SwiperType | null>(null)
+
   // Newborn images - using actual uploaded photos
   const newbornImages = [
     {
-      src: '/assets/carousels/newborn/NEWBORN.jpg',
-      alt: 'Zion as a newborn',
-      caption: 'Welcome to the world, little Zion!',
+      src: '/assets/carousels/newborn/NEWBORN 1.JPEG',
+      alt: 'Zion newborn',
+      caption: 'Welcome to the world!',
+      fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/newborn/NEWBORN 2.JPEG',
+      alt: 'Zion first moments',
+      caption: 'Pure innocence and love',
+      fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
+    },
+    {
+      src: '/assets/carousels/newborn/NEWBORN 3.JPEG',
+      alt: 'Zion sleeping',
+      caption: 'Sweet dreams little one',
+      fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
+    },
+    {
+      src: '/assets/carousels/newborn/NEWBORN 4.JPEG',
+      alt: 'Zion first smile',
+      caption: 'First precious smile',
+      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/newborn/NEWBORN 5.JPEG',
+      alt: 'Zion tiny hands',
+      caption: 'Perfect little fingers',
+      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
+    },
+    {
+      src: '/assets/carousels/newborn/CHRISTENING 1.JPEG',
+      alt: 'Zion christening',
+      caption: 'Blessed and beautiful',
       fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
@@ -107,7 +138,7 @@ const NewbornSection = () => {
           </p>
         </motion.div>
 
-        {/* Newborn Slideshow */}
+        {/* Newborn Photos Carousel */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -267,7 +298,6 @@ const NewbornSection = () => {
             ))}
           </div>
         </motion.div>
-
       </div>
 
       {/* Image Modal */}
