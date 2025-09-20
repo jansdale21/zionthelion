@@ -134,16 +134,34 @@ const NewbornSection = () => {
               loop={true}
               loopAdditionalSlides={2}
               initialSlide={0}
-              spaceBetween={20}
+              spaceBetween={16}
               slidesPerView={1}
+              centeredSlides={true}
+              touchRatio={1}
+              touchAngle={45}
+              resistanceRatio={0.85}
               breakpoints={{
+                480: {
+                  slidesPerView: 1.2,
+                  spaceBetween: 16,
+                  centeredSlides: true,
+                },
                 640: {
                   slidesPerView: 2,
                   spaceBetween: 20,
+                  centeredSlides: false,
+                },
+                768: {
+                  slidesPerView: 2.5,
+                  spaceBetween: 24,
                 },
                 1024: {
                   slidesPerView: 3,
                   spaceBetween: 30,
+                },
+                1280: {
+                  slidesPerView: 3.5,
+                  spaceBetween: 32,
                 },
               }}
               className="rounded-2xl overflow-hidden shadow-2xl relative z-20"
@@ -179,17 +197,19 @@ const NewbornSection = () => {
             {/* Navigation Buttons */}
             <button 
               onClick={() => swiperRef.current?.slidePrev()}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-jungle-600 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer"
+              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-jungle-600 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer touch-manipulation"
+              aria-label="Previous image"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <button 
               onClick={() => swiperRef.current?.slideNext()}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/90 hover:bg-white text-jungle-600 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer"
+              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/95 hover:bg-white text-jungle-600 p-2 sm:p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110 active:scale-95 cursor-pointer touch-manipulation"
+              aria-label="Next image"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -239,33 +259,34 @@ const NewbornSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-2 sm:p-4"
             onClick={() => setSelectedImage(null)}
           >
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              className="relative max-w-3xl max-h-[80vh] w-full"
+              className="relative max-w-4xl max-h-[90vh] w-full mx-auto"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10 bg-black/50 rounded-full p-2"
+                className="absolute -top-8 sm:-top-12 right-0 sm:right-0 text-white hover:text-gray-300 transition-colors z-10 bg-black/70 hover:bg-black/90 rounded-full p-2 sm:p-3 touch-manipulation"
+                aria-label="Close image"
               >
-                <FaTimes className="w-6 h-6" />
+                <FaTimes className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
               <img
                 src={selectedImage.src}
                 alt={selectedImage.alt}
-                className="w-full h-full max-h-[70vh] object-contain rounded-lg"
+                className="w-full h-full max-h-[75vh] sm:max-h-[80vh] object-contain rounded-lg"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.src = 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80';
                 }}
               />
               {selectedImage.caption && (
-                <p className="text-white text-center mt-4 text-lg font-semibold">
+                <p className="text-white text-center mt-3 sm:mt-4 text-base sm:text-lg font-semibold px-4">
                   {selectedImage.caption}
                 </p>
               )}
