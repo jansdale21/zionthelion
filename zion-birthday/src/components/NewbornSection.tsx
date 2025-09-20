@@ -134,7 +134,7 @@ const NewbornSection = () => {
               loop={true}
               loopAdditionalSlides={2}
               initialSlide={0}
-              spaceBetween={30}
+              spaceBetween={20}
               slidesPerView={1}
               breakpoints={{
                 640: {

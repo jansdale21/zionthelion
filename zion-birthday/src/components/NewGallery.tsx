@@ -368,9 +368,9 @@ const NewGallery = () => {
                 bulletActiveClass: 'swiper-pagination-bullet-active bg-forest-500 scale-125',
               }}
               loop={true}
-              loopAdditionalSlides={1}
+              loopAdditionalSlides={2}
               initialSlide={0}
-              spaceBetween={30}
+              spaceBetween={20}
               slidesPerView={1}
               breakpoints={{
                 640: {
