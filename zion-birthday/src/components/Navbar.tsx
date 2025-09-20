@@ -5,7 +5,9 @@ import {
   FaImages, 
   FaEnvelope, 
   FaMapMarkerAlt,
-  FaBaby
+  FaBaby,
+  FaCalendarAlt,
+  FaBirthdayCake
 } from 'react-icons/fa'
 
 const Navbar = () => {
@@ -33,9 +35,11 @@ const Navbar = () => {
   const navItems = [
     { id: 'hero', icon: FaHome, label: 'Home' },
     { id: 'newborn', icon: FaBaby, label: 'Newborn' },
+    { id: 'monthly-journey', icon: FaCalendarAlt, label: '12 Months' },
+    { id: 'one-year-old', icon: FaBirthdayCake, label: '1 Year Old' },
     { id: 'gallery', icon: FaImages, label: 'Gallery' },
-    { id: 'rsvp', icon: FaEnvelope, label: 'RSVP' },
     { id: 'map', icon: FaMapMarkerAlt, label: 'Location' },
+    { id: 'rsvp', icon: FaEnvelope, label: 'RSVP' },
   ]
 
   return (
@@ -57,7 +61,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               className="flex items-center space-x-2"
             >
-              <span className="text-2xl">🎂</span>
+              <span className="text-2xl">🦁</span>
               <span className={`font-bold text-lg ${isScrolled ? 'text-jungle-800' : 'text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.6)]'}`}>#ZionTheLion</span>
             </motion.div>
 

@@ -8,38 +8,60 @@ const MusicPlayer = () => {
   const [volume, setVolume] = useState(0.5)
   const [showControls, setShowControls] = useState(false)
   const [hasUserInteracted, setHasUserInteracted] = useState(false)
+  const [isMinimized, setIsMinimized] = useState(false)
   const audioRef = useRef<HTMLAudioElement>(null)
   const hasTriedFallbackRef = useRef(false)
+  const scrollTimeoutRef = useRef<number | null>(null)
 
-  // Auto-play music after user interaction
+  // Simple scroll detection - only minimizes UI, never affects music
   useEffect(() => {
-    const handleUserInteraction = () => {
-      setHasUserInteracted(true)
-      // Auto-play music after user interaction
-      if (audioRef.current && !isPlaying) {
-        audioRef.current.play().catch(() => {
-          console.log('Autoplay blocked by browser')
-        })
-        setIsPlaying(true)
+    let lastScrollY = 0
+    
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY
+      const scrollDifference = Math.abs(currentScrollY - lastScrollY)
+      
+      // If scrolling significantly, minimize UI only
+      if (scrollDifference > 10) {
+        setIsMinimized(true)
+        setShowControls(false)
+        
+        // Clear existing timeout
+        if (scrollTimeoutRef.current) {
+          clearTimeout(scrollTimeoutRef.current)
+        }
+        
+        // Set timeout to expand UI again
+        scrollTimeoutRef.current = setTimeout(() => {
+          setIsMinimized(false)
+        }, 1500)
       }
-      document.removeEventListener('click', handleUserInteraction)
-      document.removeEventListener('keydown', handleUserInteraction)
+      
+      lastScrollY = currentScrollY
     }
 
-    document.addEventListener('click', handleUserInteraction)
-    document.addEventListener('keydown', handleUserInteraction)
-
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    
     return () => {
-      document.removeEventListener('click', handleUserInteraction)
-      document.removeEventListener('keydown', handleUserInteraction)
+      window.removeEventListener('scroll', handleScroll)
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
+      }
     }
-  }, [isPlaying])
+  }, [])
 
-  // Listen for a custom event from the invitation accept button
+  // Listen for invitation accept - start music automatically
   useEffect(() => {
     const onStartMusic = () => {
       if (audioRef.current) {
-        audioRef.current.play().catch(() => {})
+        setHasUserInteracted(true)
+        audioRef.current.muted = false
+        audioRef.current.play().then(() => {
+          setIsPlaying(true)
+        }).catch(() => {
+          // If autoplay fails, just set the state
+          setIsPlaying(true)
+        })
       }
     }
     window.addEventListener('start-music', onStartMusic as EventListener)
@@ -73,6 +95,7 @@ const MusicPlayer = () => {
     }
   }, [volume, isMuted])
 
+  // SIMPLE: Only toggle play/pause when user clicks the button
   const togglePlay = () => {
     if (!hasUserInteracted) {
       setHasUserInteracted(true)
@@ -80,14 +103,25 @@ const MusicPlayer = () => {
     
     if (audioRef.current) {
       if (isPlaying) {
+        // User wants to pause - pause and stay paused
         audioRef.current.pause()
+        setIsPlaying(false)
       } else {
-        audioRef.current.play().catch(() => {
-          // Handle autoplay restrictions
-          console.log('Autoplay blocked by browser')
+        // User wants to play - play and stay playing
+        audioRef.current.play().then(() => {
+          setIsPlaying(true)
+        }).catch(() => {
+          // Even if play fails, update UI state
+          setIsPlaying(true)
         })
       }
     }
+  }
+
+  // SIMPLE: Touch only shows/hides controls, never affects music
+  const handleTouch = () => {
+    setShowControls(!showControls)
+    setIsMinimized(false)
   }
 
   const toggleMute = () => {
@@ -105,27 +139,42 @@ const MusicPlayer = () => {
       {/* Music Player Widget */}
       <motion.div
         initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 2, duration: 0.6 }}
-        className="fixed bottom-24 right-2 sm:right-4 z-[110]"
+        animate={{ 
+          opacity: 1, 
+          x: 0,
+          scale: isMinimized ? 0.8 : 1
+        }}
+        transition={{ 
+          delay: 2, 
+          duration: 0.6,
+          scale: { duration: 0.3 }
+        }}
+        className="fixed bottom-24 right-2 sm:right-4 z-[110] transition-all duration-300"
         onMouseEnter={() => setShowControls(true)}
         onMouseLeave={() => setShowControls(false)}
-        onTouchStart={() => setShowControls(!showControls)}
+        onTouchStart={handleTouch}
       >
-        <div className="bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-white/30 p-3 sm:p-4">
-          {/* Main Button */}
+        <div className={`bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-white/30 p-3 sm:p-4 transition-all duration-300 ${
+          isMinimized ? 'opacity-70' : 'opacity-100'
+        }`}>
+          {/* Main Button - ONLY way to control music */}
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             onClick={togglePlay}
-            className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 ${
+            className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center transition-all duration-300 touch-manipulation select-none ${
               isPlaying 
                 ? 'bg-jungle-500 text-white animate-pulse' 
                 : 'bg-jungle-100 text-jungle-600 hover:bg-jungle-200'
             }`}
+            style={{ 
+              WebkitTapHighlightColor: 'transparent',
+              touchAction: 'manipulation'
+            }}
           >
             {isPlaying ? <FaPause className="w-4 h-4 sm:w-5 sm:h-5" /> : <FaPlay className="w-4 h-4 sm:w-5 sm:h-5" />}
           </motion.button>
+          
 
           {/* Expanded Controls */}
             <AnimatePresence>
@@ -136,6 +185,8 @@ const MusicPlayer = () => {
                   exit={{ opacity: 0, height: 0, y: 10 }}
                   transition={{ duration: 0.3 }}
                   className="mt-4 space-y-3 min-w-[180px] sm:min-w-[200px]"
+                  onTouchStart={(e) => e.stopPropagation()}
+                  onTouchEnd={(e) => e.stopPropagation()}
                 >
                   {/* Music Info */}
                   <div className="text-center">
@@ -170,16 +221,20 @@ const MusicPlayer = () => {
                     />
                   </div>
 
-                  {/* Play/Pause Button */}
+                  {/* Play/Pause Button - SAME as main button */}
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={togglePlay}
-                    className={`w-full py-2 px-4 rounded-lg font-semibold text-sm transition-all duration-200 ${
+                    className={`w-full py-2 px-4 rounded-lg font-semibold text-sm transition-all duration-200 touch-manipulation select-none ${
                       isPlaying
                         ? 'bg-jungle-500 text-white hover:bg-jungle-600'
                         : 'bg-jungle-100 text-jungle-600 hover:bg-jungle-200'
                     }`}
+                    style={{ 
+                      WebkitTapHighlightColor: 'transparent',
+                      touchAction: 'manipulation'
+                    }}
                   >
                     {isPlaying ? 'Pause Music' : 'Play Music'}
                   </motion.button>

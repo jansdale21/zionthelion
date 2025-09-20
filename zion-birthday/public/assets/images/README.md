@@ -21,3 +21,4 @@ Place your images here:
 - Format: JPG or PNG
 - Optimize for web (compress for faster loading)
 
+

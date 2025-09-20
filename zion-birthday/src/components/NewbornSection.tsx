@@ -5,37 +5,25 @@ import { FaCalendarAlt, FaWeight, FaBaby, FaHeart, FaRuler, FaClock } from 'reac
 import '../swiper.css'
 
 const NewbornSection = () => {
-  // Newborn images - replace with actual newborn photos
+  // Newborn images - using actual uploaded photos
   const newbornImages = [
     {
-      src: '/assets/carousels/newborn/newborn-1.jpg',
+      src: '/assets/carousels/newborn/NEWBORN.jpg',
       alt: 'Zion as a newborn',
-      caption: 'First moments in the world',
+      caption: 'Welcome to the world, little lion!',
       fallback: 'https://images.unsplash.com/photo-1559827260-dc66d52bef19?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     },
     {
-      src: '/assets/carousels/newborn/newborn-2.jpg',
-      alt: 'Tiny hands and feet',
-      caption: 'Perfect little fingers and toes',
+      src: '/assets/carousels/newborn/CHRISTENING 2.JPEG',
+      alt: 'Zion\'s christening',
+      caption: 'Blessed and beautiful',
       fallback: 'https://images.unsplash.com/photo-1546182990-dffeafbe841d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2059&q=80'
     },
     {
-      src: '/assets/carousels/newborn/newborn-3.jpg',
-      alt: 'Sleeping peacefully',
-      caption: 'Sweet dreams, little lion',
+      src: '/assets/carousels/newborn/CHRISTENING 2ND.JPEG',
+      alt: 'Zion\'s christening ceremony',
+      caption: 'A special day of celebration',
       fallback: 'https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2072&q=80'
-    },
-    {
-      src: '/assets/carousels/newborn/newborn-4.jpg',
-      alt: 'First family photo',
-      caption: 'The pride is complete',
-      fallback: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
-    },
-    {
-      src: '/assets/carousels/newborn/newborn-5.jpg',
-      alt: 'First bath',
-      caption: 'Splish splash, little cub',
-      fallback: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80'
     }
   ]
 

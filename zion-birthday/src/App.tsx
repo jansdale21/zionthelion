@@ -4,6 +4,8 @@ import Navbar from './components/Navbar'
 import InteractiveInvitationCard from './components/InteractiveInvitationCard'
 import Hero from './components/Hero'
 import NewbornSection from './components/NewbornSection'
+import MonthlyJourney from './components/MonthlyJourney'
+import OneYearOld from './components/OneYearOld'
 import NewGallery from './components/NewGallery'
 import RSVPForm from './components/RSVPForm'
 import InteractiveMap from './components/InteractiveMap'
@@ -29,8 +31,10 @@ function App() {
     localStorage.setItem('zion-invitation-accepted', 'true')
     setShowConfetti(true)
     setTimeout(() => setShowConfetti(false), 3000)
-    // Signal music player to start after accepting
-    window.dispatchEvent(new Event('start-music'))
+    // Signal music player to start after accepting with a small delay
+    setTimeout(() => {
+      window.dispatchEvent(new Event('start-music'))
+    }, 500)
   }
 
   const handleInvitationDecline = () => {
@@ -86,7 +90,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-emerald-100 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-green-100 to-emerald-100 relative">
       {/* Professional Safari Background Pattern */}
       <div className="fixed inset-0 opacity-10 pointer-events-none -z-10">
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-jungle-200/30 via-lion-300/30 to-forest-400/30"></div>
@@ -102,7 +106,8 @@ function App() {
             className="fixed inset-0 pointer-events-none z-50"
           >
             <div className="confetti-container">
-              {[...Array(50)].map((_, i) => (
+              {/* OPTIMIZED: Reduced confetti count for better performance */}
+              {[...Array(20)].map((_, i) => (
                 <motion.div
                   key={i}
                   className="absolute w-2 h-2 bg-yellow-400"
@@ -117,8 +122,8 @@ function App() {
                     rotate: 360
                   }}
                   transition={{ 
-                    duration: 3,
-                    delay: Math.random() * 2
+                    duration: 2, // Faster animation
+                    delay: i * 0.1 // Staggered delay
                   }}
                 />
               ))}
@@ -138,6 +143,10 @@ function App() {
         <Hero />
         {/* Newborn Section - Hello World */}
         <NewbornSection />
+        {/* Monthly Journey - 12 months of growth */}
+        <MonthlyJourney />
+        {/* One Year Old - Recent photos */}
+        <OneYearOld />
         {/* Gallery with separate carousels */}
         <NewGallery />
         <InteractiveMap />

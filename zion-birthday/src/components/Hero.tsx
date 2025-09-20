@@ -25,7 +25,7 @@ const Hero = () => {
   ]
 
   return (
-    <section id="hero" className="relative h-screen overflow-hidden touch-pan-y">
+    <section id="hero" className="relative h-screen overflow-hidden">
       {/* Background Carousel */}
       <div className="absolute inset-0 z-10">
         <Swiper
@@ -37,6 +37,7 @@ const Hero = () => {
             pauseOnMouseEnter: false,
           }}
           speed={1000}
+          allowTouchMove={false}
           pagination={{
             clickable: true,
             bulletClass: 'swiper-pagination-bullet bg-white/40 w-3 h-3 mx-1',
@@ -67,7 +68,7 @@ const Hero = () => {
       </div>
 
       {/* Content Overlay */}
-      <div className="relative z-20 h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 touch-none">
+      <div className="relative z-20 h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="text-center text-white max-w-6xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -75,17 +76,26 @@ const Hero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <motion.h1 
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 leading-tight"
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-4 leading-tight"
               animate={{ 
                 textShadow: [
-                  "0 0 20px rgba(245, 158, 11, 0.3)",
-                  "0 0 30px rgba(34, 197, 94, 0.3)",
-                  "0 0 20px rgba(245, 158, 11, 0.3)"
-                ]
+                  "0 0 30px rgba(245, 158, 11, 0.5)",
+                  "0 0 40px rgba(34, 197, 94, 0.5)",
+                  "0 0 30px rgba(245, 158, 11, 0.5)"
+                ],
+                scale: [1, 1.02, 1]
               }}
               transition={{ duration: 3, repeat: Infinity }}
+              style={{
+                background: 'linear-gradient(45deg, #f59e0b, #22c55e, #f59e0b)',
+                backgroundSize: '200% 200%',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                animation: 'gradientShift 3s ease-in-out infinite'
+              }}
             >
-              Zion
+              ZION
             </motion.h1>
             <motion.h2 
               className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold mb-6 text-lion-100 drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]"

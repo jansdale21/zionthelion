@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
-import { FaCheck, FaEnvelope, FaUser, FaUsers, FaUtensils, FaGift } from 'react-icons/fa'
+import { FaCheck, FaEnvelope, FaUser, FaUsers, FaGift, FaDownload } from 'react-icons/fa'
+import { rsvpService } from '../services/rsvpService'
 
 interface RSVPFormData {
   name: string
@@ -16,6 +17,7 @@ interface RSVPFormData {
 const RSVPForm = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submissionError, setSubmissionError] = useState<string | null>(null)
 
   const {
     register,
@@ -26,21 +28,36 @@ const RSVPForm = () => {
 
   const onSubmit = async (data: RSVPFormData) => {
     setIsSubmitting(true)
+    setSubmissionError(null)
     
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
-    // Store in localStorage
-    const rsvpData = {
-      ...data,
-      submittedAt: new Date().toISOString(),
-      id: Math.random().toString(36).substr(2, 9)
+    try {
+      // Save to localStorage immediately (backup)
+      const rsvpData = rsvpService.saveRSVPLocal(data)
+      
+      // Try to save to backend API
+      const backendResult = await rsvpService.saveRSVPToBackend(rsvpData)
+      
+      if (!backendResult.success) {
+        console.warn('Backend save failed, but local save succeeded:', backendResult.error)
+        // Continue anyway since we have local backup
+      }
+      
+      // Try to send email notification
+      const emailResult = await rsvpService.sendRSVPEmail(rsvpData)
+      
+      if (!emailResult.success) {
+        console.warn('Email send failed:', emailResult.error)
+        // Continue anyway
+      }
+      
+      setIsSubmitting(false)
+      setIsSubmitted(true)
+      
+    } catch (error) {
+      console.error('RSVP submission error:', error)
+      setSubmissionError('Failed to submit RSVP. Please try again.')
+      setIsSubmitting(false)
     }
-    
-    localStorage.setItem('zion-rsvp', JSON.stringify(rsvpData))
-    
-    setIsSubmitting(false)
-    setIsSubmitted(true)
   }
 
   const guestCountOptions = [
@@ -85,15 +102,26 @@ const RSVPForm = () => {
               </ul>
             </div>
             
-            <button
-              onClick={() => {
-                setIsSubmitted(false)
-                reset()
-              }}
-              className="btn-secondary"
-            >
-              Submit Another RSVP
-            </button>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button
+                onClick={() => {
+                  setIsSubmitted(false)
+                  reset()
+                }}
+                className="btn-secondary"
+              >
+                Submit Another RSVP
+              </button>
+              
+              {/* Admin: Export RSVPs button */}
+              <button
+                onClick={() => rsvpService.exportRSVPsAsCSV()}
+                className="btn-primary flex items-center justify-center"
+              >
+                <FaDownload className="w-4 h-4 mr-2" />
+                Export RSVPs (Admin)
+              </button>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -242,25 +270,11 @@ const RSVPForm = () => {
               )}
             </div>
 
-            {/* Dietary Notes */}
-            <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
-                <FaUtensils className="inline w-4 h-4 mr-2" />
-                Dietary Restrictions or Allergies
-              </label>
-              <textarea
-                {...register('dietaryNotes')}
-                rows={3}
-                className="w-full px-4 py-3 border border-jungle-300 rounded-lg focus:ring-2 focus:ring-jungle-500 focus:border-transparent transition-all duration-200"
-                placeholder="Let us know about any dietary restrictions or allergies..."
-              />
-            </div>
-
             {/* Message */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
                 <FaGift className="inline w-4 h-4 mr-2" />
-                Special Message for Zion
+                Special Message for Zion (Optional)
               </label>
               <textarea
                 {...register('message')}
@@ -269,6 +283,13 @@ const RSVPForm = () => {
                 placeholder="Share a special message or birthday wish for our little lion king..."
               />
             </div>
+
+            {/* Error Message */}
+            {submissionError && (
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+                <p className="text-red-600 text-sm">{submissionError}</p>
+              </div>
+            )}
 
             {/* Submit Button */}
             <motion.button

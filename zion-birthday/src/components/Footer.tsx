@@ -188,9 +188,20 @@ const Footer = () => {
               </a>
             </p>
             <div className="flex items-center justify-center space-x-2 text-white">
-              <span className="text-2xl">🎉</span>
+              <span className="text-2xl">🦁</span>
               <span className="text-lg font-semibold">#ZionTheLion</span>
-              <span className="text-2xl">🎈</span>
+              <span className="text-2xl">🦁</span>
+            </div>
+            
+            {/* Hidden admin link - only visible if you know where to look */}
+            <div className="mt-4 opacity-0 hover:opacity-100 transition-opacity duration-300">
+              <a 
+                href="/admin" 
+                className="text-white/50 text-xs hover:text-white/80 transition-colors"
+                title="Admin Dashboard"
+              >
+                Admin
+              </a>
             </div>
           </div>
         </motion.div>

@@ -15,8 +15,8 @@ const InteractiveMap = () => {
   // Venue details
   const venue = {
     name: "Galano's Farm",
-    address: "5MJ2+2MV, Unnamed Road, Mexico, Pampanga",
-    coordinates: [15.1801248, 120.6491009] as [number, number],
+    address: "5MJ2+3M5 Mexico, Pampanga",
+    coordinates: [15.1801483, 120.6517331] as [number, number],
     phone: "+63 932 414 0498",
     hours: "3:00 PM onwards",
     email: "princess.yusi1203@gmail.com"
@@ -212,7 +212,6 @@ const InteractiveMap = () => {
                   <li>• Free parking available on-site</li>
                   <li>• Additional street parking nearby</li>
                   <li>• Carpooling encouraged</li>
-                  <li>• Handicap accessible parking available</li>
                 </ul>
               </div>
               
@@ -222,7 +221,6 @@ const InteractiveMap = () => {
                   Accessibility
                 </h4>
                 <ul className="text-gray-600 space-y-1 text-sm">
-                  <li>• Wheelchair accessible entrance</li>
                   <li>• Accessible restrooms available</li>
                   <li>• Stroller-friendly venue</li>
                   <li>• Quiet area available if needed</li>
