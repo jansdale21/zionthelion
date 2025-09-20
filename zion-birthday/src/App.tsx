@@ -141,10 +141,6 @@ function App() {
         <Hero />
         {/* Newborn Section - Hello World */}
         <NewbornSection />
-        {/* Monthly Journey - 12 months of growth */}
-        <MonthlyJourney />
-        {/* One Year Old - Recent photos */}
-        <OneYearOld />
         {/* Gallery with separate carousels */}
         <NewGallery />
         <InteractiveMap />

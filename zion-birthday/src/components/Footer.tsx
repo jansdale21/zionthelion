@@ -193,8 +193,8 @@ const Footer = () => {
               <span className="text-2xl">🦁</span>
             </div>
             
-            {/* Hidden admin link - only visible if you know where to look */}
-            <div className="mt-4 opacity-0 hover:opacity-100 transition-opacity duration-300">
+            {/* Admin link - visible but subtle */}
+            <div className="mt-4 opacity-30 hover:opacity-100 transition-opacity duration-300">
               <a 
                 href="/admin" 
                 className="text-white/50 text-xs hover:text-white/80 transition-colors"
